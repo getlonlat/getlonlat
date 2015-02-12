@@ -1,0 +1,27 @@
+{
+  "name": "getlonlat",
+  "version": "0.0.0",
+  "authors": [
+    "Everton Inocencio <hewerthomn@gmail.com>"
+  ],
+  "description": "App to get Longitute and Latitude from a place in a map",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.3.13",
+    "angular-touch": "~1.3.13",
+    "bootstrap": "~3.3.2",
+    "openlayers": "*"
+  }
+}
