@@ -8,36 +8,13 @@
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
 
-		<title>GetLonLat - Get Longitude and Latitude</title>
+		<title>getLonLat - Get Longitude and Latitude</title>
 
 		<link href="build/css/app.min.css" rel="stylesheet">
 	</head>
 	<body ng-app="app">
 
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">GetLonLat</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<form class="navbar-form navbar-right">
-						<div class="form-group">
-							<input type="text" placeholder="Email" class="form-control">
-						</div>
-						<button type="submit" class="btn btn-success">Drop marker here</button>
-					</form>
-				</div><!--/.navbar-collapse -->
-			</div>
-		</nav>
-
-		<div ng-view class="container-fluid">
-		</div> <!-- /container-fluid -->
+		<div ng-view class="container-fluid"></div>
 
 		<script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
 		<script src="build/js/app.min.js"></script>

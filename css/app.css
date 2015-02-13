@@ -1,5 +1,16 @@
 body {
-	padding-top: 70px;
+	padding-top: 10px
+}
+
+#map {
+	position: absolute;
+}
+
+.map-controls {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	z-index: 999;
 }
 
 div.olControlZoom {

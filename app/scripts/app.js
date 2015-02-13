@@ -12,10 +12,6 @@ angular.module('app', [
 			controller:  'HomeCtrl',
 			templateUrl: '/app/views/home.html'
 		})
-		.when('/about', {
-			controller:  'AboutCtrl',
-			templateUrl: '/app/views/about.html'
-		})
 		.otherwise({
 			redirectTo: '/home'
 		});
