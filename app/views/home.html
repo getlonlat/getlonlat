@@ -1,4 +1,84 @@
+<div class="row">
+	<div class="col-md-3 col-lg-2">
+		<h2 class="text-center">getLonLat <i class="fa fa-bullseye text-danger"></i></h2>
+		<hr>
 
-<div id="map" style="width: 100%; heigth: 900px;">
+		<fieldset>
+			<legend>Values</legend>
 
+			<div class="form-group">
+				<div class="input-group input-group-sm">
+					<div class="input-group-addon">Zoom</div>
+					<input type="text" class="form-control text-right" value="{{ zoom }}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="input-group input-group-sm">
+					<div class="input-group-addon">Latitude <b>Y</b></div>
+					<input type="text" class="form-control text-right" value="{{ latitude }}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="input-group input-group-sm">
+					<div class="input-group-addon">Longitude <b>X</b></div>
+					<input type="text" class="form-control text-right" value="{{ longitude }}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Latitude / Longitude</label>
+				<textarea type="text" class="form-control input-sm" rows="2">{{ latlon }}</textarea>
+			</div>
+
+			<div class="form-group">
+				<label>Longitude / Latitude</label>
+				<textarea type="text" class="form-control input-sm" rows="2">{{ lonlat }}</textarea>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Settings</legend>
+
+			<div class="form-group">
+				<div class="input-group input-group-sm">
+					<div class="input-group-addon">Separator</div>
+					<select ng-model="separator" class="form-control">
+						<option value="space">Space</option>
+						<option value="comma">Comma</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group" title="Projection">
+				<div class="input-group input-group-sm">
+					<div class="input-group-addon">Output EPSG</div>
+					<select ng-model="projection" class="form-control">
+						<option value="EPSG:4326">4326</option>
+						<option value="EPSG:900913">900913</option>
+					</select>
+				</div>
+			</div>
+
+			<hr>
+			<p class="text-muted text-center">
+				<small><b>{{ year }}</b> - getLonLat</small>
+				<a href="http://github.com/hewerthomn/getlonlat" class="btn btn-xs btn-link">about</a>
+			</p>
+		</fieldset>
+	</div><!--.col-->
+
+	<div class="col-md-9 col-lg-10">
+
+		<div id="map" class="well well-sm" style="width: 98%; heigth: 900px;">
+
+			<div class="map-controls">
+
+				<button type="button" ng-click="dropMarker()" class="btn btn-primary"><i class="fa fa-map-marker"></i> Drop marker</button>
+			</div>
+
+		</div>
+
+	</div>
 </div>

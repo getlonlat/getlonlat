@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 					'js/OpenLayers-app.js',
 
 					'vendor/jquery/dist/jquery.js',
+					'vendor/bootstrap/dist/js/bootstrap.js',
 					'vendor/angular/angular.js',
 					'vendor/angular-touch/angular-touch.js',
 					'vendor/angular-route/angular-route.js',
@@ -42,8 +43,8 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						flatten: true,
-						src: ['font/**.*'],
-						dest: 'build/font'
+						src: ['vendor/font-awesome/fonts/**.*'],
+						dest: 'build/fonts'
 					}
 				]
 			}
@@ -64,7 +65,8 @@ module.exports = function(grunt) {
 			combine: {
 				files: {
 					'build/css/app.min.css': [
-						'vendor/bootstrap/dist/css/bootstrap.css',
+						'css/bootstrap-united.css',
+						'vendor/font-awesome/css/font-awesome.css',
 						'css/app.css',
 					]
 				}

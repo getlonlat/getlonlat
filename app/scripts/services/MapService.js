@@ -27,9 +27,9 @@ function MapService()
 	    OpenLayers.Util.applyDefaults(opts, self.defaultOpts);
 
 	    self._map = new OpenLayers.Map(opts.id, {
-	    	theme: null,
-        projection: 'EPSG:4326'
+	    	theme: null
 	    });
+
 	    self._startZoom  = opts.startZoom;
 	    self._startPoint = new OpenLayers.LonLat(opts.startPoint.lon, opts.startPoint.lat);
 
@@ -64,10 +64,7 @@ function MapService()
 			};
 
 			self._baselayers = [
-				new OpenLayers.Layer.Google('Google Mapas', {
-					minZoomLevel: 5,
-					maxZoomLevel: 19
-				})
+				new OpenLayers.Layer.Google('Google Mapas')
 			];
 
 			self._layers = {
@@ -200,18 +197,17 @@ function MapService()
 
 			for(var key in points)
 			{
-				var label = '';
-				if(points[key].hasOwnProperty('price'))
-				{
-					label = 'R$ ' + points[key].price.replace('.', ',');
-				}
+				var label = points[key].hasOwnProperty('label') ? points[key].label : '';
 				var pointOpts = {
 					label: label,
 					icon:  points[key].icon
 				};
 
-				var point = new OpenLayers.Geometry.Point(points[key].xy.x, points[key].xy.y);
-				var trans = point.transform(new OpenLayers.Projection('EPSG:4326'), self._map.getProjection());
+				var point = new OpenLayers.Geometry.Point(points[key].lon, points[key].lat);
+				if (opts.hasOwnProperty('transformTo'))
+				{
+					point = point.transform(opts.transformTo, self._map.getProjection());
+				};
 
 				var feature = new OpenLayers.Feature.Vector(point, pointOpts);
 				feature.data = points[key];
@@ -360,6 +356,17 @@ function MapService()
 	  	}
 
 	  	self._controls.geolocate.getCurrentLocation();
+	  },
+
+	  getCenter: function()
+	  {
+	  	var self = this;
+	  	var center = self._map.getCenter();
+
+	  	return {
+	  		lon: center.lon,
+	  		lat: center.lat
+	  	};
 	  },
 
 		getActualZoom: function(callback)
