@@ -53,13 +53,11 @@ function HomeCtrl($scope, $location, $window, Map)
 	function _updateValues(point)
 	{
 		var point = Map.xy2lonlat({ x: point.lon, y: point.lat });
-		console.log('point', point);
 
 		if($scope.projection !== $scope.defaultProjection)
 		{
 			point = Map.transform(point, $scope.defaultProjection, $scope.projection);
 		}
-		console.log('point', point);
 
 		$scope.longitude = point.lon;
 		$scope.latitude  = point.lat;
