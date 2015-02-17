@@ -367,7 +367,6 @@ function MapService()
 	  		});
 	  		self._controls.dragPoint.onComplete = function(featurePoint, pxl)
 	  		{
-	  			console.log('dragged point', featurePoint);
 	  			point = {
 	  				lon: featurePoint.geometry.x,
 	  				lat: featurePoint.geometry.y
