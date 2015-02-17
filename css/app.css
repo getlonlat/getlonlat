@@ -6,6 +6,10 @@ body {
 	position: absolute;
 }
 
+.brand {
+	width: 30px;
+}
+
 .map-controls {
 	position: absolute;
 	top: 20px;
