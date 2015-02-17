@@ -27,7 +27,9 @@ function MapService()
 	    OpenLayers.Util.applyDefaults(opts, self.defaultOpts);
 
 	    self._map = new OpenLayers.Map(opts.id, {
-	    	theme: null
+	    	theme: null,
+	    	projection: 'EPSG:4326',
+	    	displayProjection: 'EPSG:4326'
 	    });
 
 	    self._startZoom  = opts.startZoom;
@@ -72,21 +74,7 @@ function MapService()
 					styleMap: new OpenLayers.StyleMap({
 						'default': {
 							externalGraphic: "${icon}",
-							graphicWidth: 40
-						}
-					})
-				}),
-				points: new OpenLayers.Layer.Vector('Points', {
-					styleMap: new OpenLayers.StyleMap({
-						'default': {
-							label: "${label}",
-							labelYOffset: 27,
-							fontSize: '16px',
-							fontWeight: 'bold',
-							externalGraphic: "${icon}",
-							graphicWidth: 40
-						},
-						'select': {
+							graphicWidth: 40,
 							cursor: 'pointer'
 						}
 					})
@@ -139,7 +127,7 @@ function MapService()
           documentDrag: true,
           dragPanOptions: { enableKinetic: true }
         }),
-        selectPoint: new OpenLayers.Control.SelectFeature([self._layers.points], {
+        selectPoint: new OpenLayers.Control.SelectFeature([self._layers.position], {
         	autoActivate: true,
         	onSelect: self.onSelectPoint
         }),
@@ -188,7 +176,7 @@ function MapService()
 			var self = this,
 					opts = opts || {},
 					defaultOpts = {
-						layer: 'points',
+						layer: 'position',
 						clearBefore: true,
 					},
 					arrPontos    = [];
@@ -358,6 +346,53 @@ function MapService()
 	  	self._controls.geolocate.getCurrentLocation();
 	  },
 
+	  enableDragPoint: function(callback, opts)
+	  {
+	  	var self = this,
+	  			point = {},
+	  			opts  = opts || {},
+	  			defaultOpts = {
+	  			};
+
+	  	OpenLayers.Util.applyDefaults(opts, defaultOpts);
+
+	  	if(!self._controls.hasOwnProperty('dragPoint'))
+	  	{
+	  		self._controls.dragPoint = new OpenLayers.Control.DragFeature(self._layers.position, {
+	  			hover: true,
+	  			selectStyle: {
+	  				cursor: 'pointer'
+	  			},
+	  			documentDrag: true
+	  		});
+	  		self._controls.dragPoint.onComplete = function(featurePoint, pxl)
+	  		{
+	  			console.log('dragged point', featurePoint);
+	  			point = {
+	  				lon: featurePoint.geometry.x,
+	  				lat: featurePoint.geometry.y
+	  			};
+
+	  			self._layers.position.addFeatures([featurePoint]);
+
+	  			callback(point);
+	  		};
+
+	  		self._map.addControl(self._controls.dragPoint);
+	  	}
+
+	  	self._controls.dragPoint.activate();
+	  },
+
+	  disableDragPoint: function()
+	  {
+	  	if(this._controls.hasOwnProperty('dragPoint'))
+	  	{
+	  		this._controls.dragPoint.deactivate();
+	  		this._controls.selectPoint.activate();
+	  	}
+	  },
+
 	  getCenter: function()
 	  {
 	  	var self = this;
@@ -437,6 +472,22 @@ function MapService()
 				lon: point.x,
 				lat: point.y
 			};
+		},
+
+		/**
+		 * Transform latlon hash from projection to anoter
+		 *
+		 * @param hash lonlat with lon and lat
+		 * @param string from from projection
+		 * @param string to to projection
+		 *
+		 * @return hash hash with lon and lat properties
+		 */
+		transform: function(lonlat, from, to)
+		{
+			var dest = new OpenLayers.LonLat(lonlat.lon, lonlat.lat);
+			dest = dest.transform(from, to);
+			return { lon: dest.lon, lat: dest.lat };
 		},
 
 		fixMapHeight: function()
