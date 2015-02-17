@@ -310,7 +310,7 @@ function MapService()
 	  		self._controls.geolocate = new OpenLayers.Control.Geolocate({
 	        bind: false,
 	        geolocationOption: {
-	          enableHighAccuracy: false,
+	          enableHighAccuracy: true,
 	          maximumAge: 0,
 	          timeout: 10000
 	        }
@@ -318,12 +318,22 @@ function MapService()
 
 	      self._controls.geolocate.events.register('locationuncapable', this, function() {
 	      	callbackAlways();
-	      	callbackFailed('O dispositivo não suporta Geolocalização.');
+	      	callbackFailed('The device does not support Geolocation.');
 	      });
 
-	  		self._controls.geolocate.events.register('locationfailed', this, function() {
-					callbackAlways();
-		      callbackFailed('Não foi possível obter sua localização.');
+	  		self._controls.geolocate.events.register('locationfailed', this, function(e) {
+	  			callbackAlways();
+	  			if(e.hasOwnProperty('error'))
+	  			{
+	  				var message = 'PositionError (Code ' + e.error.code + ')\n\n';
+	  				message += e.error.message;
+
+	  				callbackFailed(message);
+	  			}
+	  			else
+	  			{
+		      	callbackFailed('Failed to get your position.');
+	  			}
 		    });
 
 		    self._controls.geolocate.events.register('locationupdated', self._controls.geolocate, function(e) {
@@ -331,9 +341,8 @@ function MapService()
 
 					var lonlat = (e.point.clone()).transform(self._map.getProjection(), new OpenLayers.Projection('EPSG:4326'));
 					var point = {
-						x: e.point.x,
-						y: e.point.y,
-						lonlat: { lon: lonlat.x, lat: lonlat.y }
+						lon: lonlat.x,
+						lat: lonlat.y
 					};
 
 		      callbackSuccess(point);

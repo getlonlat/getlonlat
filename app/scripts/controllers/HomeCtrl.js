@@ -90,7 +90,21 @@ function HomeCtrl($scope, $location, $window, Map)
 		}
 
 		_addMarker(point);
-	},
+	};
+
+	$scope.getPosition = function()
+	{
+		$scope.gettingPosition = true;
+
+		Map.getPosition(function(point) {
+			_addMarker(point);
+		}, function(errorMessage) {
+			window.alert(errorMessage);
+		}, function() {
+			// always execute after success and error
+			$scope.gettingPosition = false;
+		});
+	};
 
 	$scope.onSelectPoint = function(feature)
 	{
