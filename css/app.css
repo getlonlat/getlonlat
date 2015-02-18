@@ -47,3 +47,17 @@ div.olControlZoom a {
 a.olControlZoomIn {
 	border-radius: 4px 4px 0 0;
 }
+.olLayerGoogleCopyright {
+    right: 3px;
+    bottom: 2px;
+    left: auto;
+}
+.olLayerGooglePoweredBy {
+    left: 2px;
+    bottom: 2px;
+}
+.olControlAttribution {
+	left: 3px;
+	bottom: 2px;
+	right: auto;
+}
