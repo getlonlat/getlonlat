@@ -62,13 +62,17 @@ function MapService($http)
 	    var self = this;
 
 	    self._baselayer = {
-				OSM: 				   0,
-				GOOGLE_MAP:    1,
+				OSM: 				   		0,
+				GOOGLE_MAP:    		1,
+				GOOGLE_MAP_NIGHT: 2,
 			};
 
 			self._baselayers = [
 				new OpenLayers.Layer.OSM('OpenStreetMap'),
-				new OpenLayers.Layer.Google('Google Mapas')
+				new OpenLayers.Layer.Google('Google Maps'),
+				new OpenLayers.Layer.Google('Google Maps Night', {
+					type: 'styled'
+				})
 			];
 
 			self._layers = {
@@ -88,6 +92,28 @@ function MapService($http)
 			{
 				self._map.addLayer(self._layers[key]);
 			}
+
+			self.setStyles();
+	  },
+
+	  setStyles: function()
+	  {
+	  	var self = this,
+	  		styleNight = [{
+					featureType: 'all',
+					elementType: 'all',
+						"stylers": [
+				      { "invert_lightness": true },
+				      { "visibility": "on" },
+				      { "hue": "#00bbff" },
+				      { "saturation": 1 }
+				    ]
+				}];
+		  styledNightOptions = { name: 'Styled Map' },
+		  styledNightType = new google.maps.StyledMapType(styleNight, styledNightOptions);
+
+			self._baselayers[self._baselayer.GOOGLE_MAP_NIGHT].mapObject.mapTypes.set('styled', styledNightType);
+			self._baselayers[self._baselayer.GOOGLE_MAP_NIGHT].mapObject.setMapTypeId('styled');
 	  },
 
 		/**

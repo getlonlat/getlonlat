@@ -12,6 +12,8 @@ function HomeCtrl($scope, $location, $window, Map)
 		$scope.zooms 		 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 		$scope.latitude  = 0;
 		$scope.longitude = 0;
+
+		$scope.baselayer  = 0;
 		$scope.separator  = 'comma';
 		$scope.projection = 'EPSG:4326';
 		$scope.defaultProjection = 'EPSG:4326';
@@ -150,6 +152,11 @@ function HomeCtrl($scope, $location, $window, Map)
 	$scope.changeZoom = function(zoom)
 	{
 		Map.setZoom(zoom);
+	};
+
+	$scope.changeBaselayer = function(baselayer)
+	{
+		Map.setBaseLayer(baselayer);
 	};
 
 	$scope.onSelectPoint = function(feature)
