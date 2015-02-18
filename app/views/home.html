@@ -57,6 +57,17 @@
 				</div>
 			</div>
 
+			<div class="form-group" title="Map base layer">
+				<div class="input-group input-group-sm">
+					<div class="input-group-addon">Base Layer</div>
+					<select ng-model="baselayer" ng-change="changeBaselayer(baselayer);" class="form-control">
+						<option value="0">OpenStreetMap</option>
+						<option value="1">Google Maps</option>
+						<option value="2">Google Maps Night</option>
+					</select>
+				</div>
+			</div>
+
 			<div class="form-group" title="Projection">
 				<div class="input-group input-group-sm">
 					<div class="input-group-addon">Output EPSG</div>
@@ -66,17 +77,6 @@
 						<option value="EPSG:4269">4269</option>
 						<option value="EPSG:2263">2263</option>
 						<option value="EPSG:26918">26918</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="form-group" title="Map base layer">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Base layer</div>
-					<select ng-model="baselayer" ng-change="changeBaselayer(baselayer);" class="form-control">
-						<option value="0">OpenStreetMap</option>
-						<option value="1">Google Maps</option>
-						<option value="2">Google Maps Night</option>
 					</select>
 				</div>
 			</div>
