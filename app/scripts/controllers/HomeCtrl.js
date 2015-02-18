@@ -9,6 +9,7 @@ function HomeCtrl($scope, $location, $window, Map)
 	{
 		$scope.year 		 = (new Date()).getFullYear();
 		$scope.zoom 		 = 1;
+		$scope.zooms 		 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 		$scope.latitude  = 0;
 		$scope.longitude = 0;
 		$scope.separator  = 'comma';
@@ -144,6 +145,11 @@ function HomeCtrl($scope, $location, $window, Map)
 
 		_addMarker(point, { center: true, zoom: 13 });
 		_applyPhase();
+	};
+
+	$scope.changeZoom = function(zoom)
+	{
+		Map.setZoom(zoom);
 	};
 
 	$scope.onSelectPoint = function(feature)

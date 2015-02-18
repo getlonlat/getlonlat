@@ -13,7 +13,9 @@
 			<div class="form-group">
 				<div class="input-group input-group-sm">
 					<div class="input-group-addon">Zoom</div>
-					<input type="text" class="form-control text-right" value="{{ zoom }}">
+					<select ng-model="zoom" ng-change="changeZoom(zoom);" class="form-control">
+						<option ng-repeat="z in zooms">{{ z }}</option>
+					</select>
 				</div>
 			</div>
 
