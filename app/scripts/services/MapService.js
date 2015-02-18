@@ -339,13 +339,12 @@ function MapService()
 		    self._controls.geolocate.events.register('locationupdated', self._controls.geolocate, function(e) {
 					callbackAlways();
 
-					var lonlat = (e.point.clone()).transform(self._map.getProjection(), new OpenLayers.Projection('EPSG:4326'));
-					var point = {
-						lon: lonlat.x,
-						lat: lonlat.y
+					var lonlat = {
+						lon: e.point.x,
+						lat: e.point.y
 					};
 
-		      callbackSuccess(point);
+		      callbackSuccess(lonlat);
 		    });
 
 		    self._map.addControl(self._controls.geolocate);
