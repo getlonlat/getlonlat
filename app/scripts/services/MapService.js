@@ -3,7 +3,7 @@
  *
  * @package sabedeus.services
  */
-function MapService()
+function MapService($http)
 {
 
 	return {
@@ -498,6 +498,26 @@ function MapService()
 			return { lon: dest.lon, lat: dest.lat };
 		},
 
+		searchPlace: function(query)
+		{
+			return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+				params: {
+					address: query,
+					sensor: false
+				}
+			});
+		},
+
+		getPlaceInfo: function(lonlat)
+		{
+			return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+				params: {
+					latlng: lonlat.lat + ',' + lonlat.lon,
+					sensor: false
+				}
+			});
+		},
+
 		fixMapHeight: function()
 		{
 			var self   = this,
@@ -521,4 +541,4 @@ function MapService()
 
 angular
 	.module('app.services')
-	.service('Map', [MapService]);
+	.service('Map', ['$http', MapService]);

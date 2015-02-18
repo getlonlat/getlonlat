@@ -70,13 +70,17 @@ function HomeCtrl($scope, $location, $window, Map)
 		_applyPhase();
 	};
 
-	function _addMarker(point)
+	function _addMarker(point, opts)
 	{
+		opts 			 = opts || {};
 		point.icon = map_marker;
 
-		Map.addPoint(point, {
-			layer: 'position'
-		});
+		Map.addPoint(point, { layer: 'position' });
+
+		if(opts.hasOwnProperty('center') && opts.center)
+		{
+			Map.setCenterMap(point, opts.zoom);
+		}
 
 		_updateValues(point);
 	};
@@ -101,8 +105,7 @@ function HomeCtrl($scope, $location, $window, Map)
 		$scope.gettingPosition = true;
 
 		Map.getPosition(function(point) {
-			_addMarker(point);
-			Map.setCenterMap(point, 10);
+			_addMarker(point, { center: true, zoom: 14 });
 		}, function(errorMessage) {
 			window.alert(errorMessage);
 		}, function() {
@@ -114,6 +117,33 @@ function HomeCtrl($scope, $location, $window, Map)
 	$scope.updateValues = function()
 	{
 		_updateValues($scope.actualPoint);
+	};
+
+	$scope.searchPlace = function(query)
+	{
+		$scope.searchingPlaces = true;
+
+		Map.searchPlace(query)
+			.success(function(response) {
+				$scope.places = response.results;
+				$scope.searchingPlaces = false;
+				_applyPhase();
+			});
+	};
+
+	$scope.selectPlace = function(place)
+	{
+		$scope.places 		= [];
+		$scope.queryPlace	= '';
+
+		var point = {
+			lon: place.geometry.location.lng,
+			lat: place.geometry.location.lat
+		};
+		point = Map.transform(point, $scope.defaultProjection, 'EPSG:900913');
+
+		_addMarker(point, { center: true, zoom: 13 });
+		_applyPhase();
 	};
 
 	$scope.onSelectPoint = function(feature)

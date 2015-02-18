@@ -79,11 +79,20 @@
 
 		<div id="map" class="well well-sm" style="width: 98%; heigth: 900px;">
 
-			<div class="map-controls">
+			<div class="map-controls text-right">
 
-				<button type="button" ng-click="dropMarker()" class="btn btn-primary"><i class="fa fa-map-marker fa-lg"></i> Drop marker</button>
+				<button type="button" ng-click="dropMarker()" class="btn btn-sm btn-primary"><i class="fa fa-map-marker fa-lg"></i> Drop marker</button>
 
-				<button type="button" ng-click="getPosition()" class="btn btn-success"><i class="fa fa-compass fa-lg"></i> Use Geolocation</button>
+				<button type="button" ng-click="getPosition()" class="btn btn-sm btn-success"><i class="fa fa-compass fa-lg"></i> Use Geolocation</button>
+
+				<br>
+				<div class="form-group">
+					<input ng-model="queryPlace" ng-change="searchPlace(queryPlace);" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+					 autofocus type="search" placeholder="Type to search a place" class="form-control input-sm">
+					<ul class="list-group">
+						<li ng-repeat="place in places" ng-click="selectPlace(place);" class="list-group-item text-left">{{ place.formatted_address }}</li>
+					</ul>
+				</div>
 			</div>
 
 		</div>
