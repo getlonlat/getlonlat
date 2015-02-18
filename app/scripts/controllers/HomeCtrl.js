@@ -102,7 +102,7 @@ function HomeCtrl($scope, $location, $window, Map)
 
 		Map.getPosition(function(point) {
 			_addMarker(point);
-			Map.setCenterMap(point, 7);
+			Map.setCenterMap(point, 10);
 		}, function(errorMessage) {
 			window.alert(errorMessage);
 		}, function() {
