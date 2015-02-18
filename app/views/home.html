@@ -47,7 +47,7 @@
 			<div class="form-group">
 				<div class="input-group input-group-sm">
 					<div class="input-group-addon">Separator</div>
-					<select ng-model="separator" class="form-control">
+					<select ng-model="separator" ng-change="updateValues();" class="form-control">
 						<option value="space">Space</option>
 						<option value="comma">Comma</option>
 					</select>
@@ -57,7 +57,7 @@
 			<div class="form-group" title="Projection">
 				<div class="input-group input-group-sm">
 					<div class="input-group-addon">Output EPSG</div>
-					<select ng-model="projection" class="form-control">
+					<select ng-model="projection" ng-change="updateValues();" class="form-control">
 						<option value="EPSG:4326">4326</option>
 						<option value="EPSG:900913">900913</option>
 						<option value="EPSG:4269">4269</option>

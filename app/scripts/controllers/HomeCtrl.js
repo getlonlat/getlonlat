@@ -52,7 +52,10 @@ function HomeCtrl($scope, $location, $window, Map)
 
 	function _updateValues(point)
 	{
-		var point = Map.xy2lonlat({ x: point.lon, y: point.lat });
+		$scope.actualPoint = point;
+
+		var lonlat = { x: point.lon, y: point.lat }
+		var point = Map.xy2lonlat(lonlat);
 
 		if($scope.projection !== $scope.defaultProjection)
 		{
@@ -104,6 +107,11 @@ function HomeCtrl($scope, $location, $window, Map)
 			// always execute after success and error
 			$scope.gettingPosition = false;
 		});
+	};
+
+	$scope.updateValues = function()
+	{
+		_updateValues($scope.actualPoint);
 	};
 
 	$scope.onSelectPoint = function(feature)
