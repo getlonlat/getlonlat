@@ -17,7 +17,7 @@ function HomeCtrl($scope, $location, $window, Map)
 
 		Map.init({
 			id: 'map',
-			startZoom: 1,
+			startZoom: $scope.zoom,
 			startPoint: { lon: 0, lat: 0 },
 			onSelectPoint: $scope.onSelectPoint
 		});
@@ -73,6 +73,7 @@ function HomeCtrl($scope, $location, $window, Map)
 	function _addMarker(point)
 	{
 		point.icon = map_marker;
+
 		Map.addPoint(point, {
 			layer: 'position'
 		});
@@ -101,6 +102,7 @@ function HomeCtrl($scope, $location, $window, Map)
 
 		Map.getPosition(function(point) {
 			_addMarker(point);
+			Map.setCenterMap(point, 7);
 		}, function(errorMessage) {
 			window.alert(errorMessage);
 		}, function() {

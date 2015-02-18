@@ -62,10 +62,12 @@ function MapService()
 	    var self = this;
 
 	    self._baselayer = {
-				GOOGLE_MAP:    0,
+				OSM: 				   0,
+				GOOGLE_MAP:    1,
 			};
 
 			self._baselayers = [
+				new OpenLayers.Layer.OSM('OpenStreetMap'),
 				new OpenLayers.Layer.Google('Google Mapas')
 			];
 
@@ -152,10 +154,9 @@ function MapService()
 	  			defaultOpts = {
 	  			};
 
-
 	  	if(point && !point.hasOwnProperty('CLASS_NAME') && point.CLASS_NAME !== 'OpenLayers.LonLat')
 	  	{
-	  		point = new OpenLayers.LonLat(point.x, point.y);
+	  		point = new OpenLayers.LonLat(point.lon, point.lat);
 	  	}
 
 	  	if(opts.hasOwnProperty('transformTo'))
