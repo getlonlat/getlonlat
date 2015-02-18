@@ -12,8 +12,6 @@ module.exports = function(grunt) {
 			app: {
 				dest: 'build/js/app.min.js',
 				src: [
-					'js/OpenLayers-app.js',
-
 					'vendor/jquery/dist/jquery.js',
 					'vendor/bootstrap/dist/js/bootstrap.js',
 					'vendor/angular/angular.js',
