@@ -69,9 +69,12 @@ function MapService($http)
 
 			self._baselayers = [
 				new OpenLayers.Layer.OSM('OpenStreetMap'),
-				new OpenLayers.Layer.Google('Google Maps'),
+				new OpenLayers.Layer.Google('Google Maps', {
+					numZoomLevels: 19
+				}),
 				new OpenLayers.Layer.Google('Google Maps Night', {
-					type: 'styled'
+					type: 'styled',
+					numZoomLevels: 19
 				})
 			];
 
@@ -195,7 +198,7 @@ function MapService($http)
 
 	  setZoom: function(zoom)
 	  {
-	  	this._map.zoomTo(zoom);
+	  	this._map.setCenter(null, zoom);
 	  },
 
 		/**
