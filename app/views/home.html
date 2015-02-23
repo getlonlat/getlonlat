@@ -1,10 +1,11 @@
 <div class="row">
-	<div class="col-xs-5 col-sm-4 col-md-3 col-lg-3">
+	<div class="col-sm-4 col-md-3 col-lg-3">
 		<h2 class="text-center">
 			<a href="#/">
 				<img src="/img/target.png" alt="" class="brand"> getLonLat
 			</a>
 		</h2>
+
 		<hr>
 
 		<fieldset>
@@ -89,7 +90,7 @@
 		</fieldset>
 	</div><!--.col-->
 
-	<div class="col-xs-7 col-sm-8 col-md-9 col-lg-9">
+	<div class="col-sm-8 col-md-9 col-lg-9">
 
 		<div id="map" class="well well-sm" style="width: 98%; heigth: 900px;">
 
@@ -104,14 +105,21 @@
 						</ul>
 
 						<div class="input-group-btn">
-							<button type="button" ng-click="dropMarker()" class="btn btn-sm btn-primary"><i class="fa fa-map-marker fa-lg"></i> Drop marker</button>
+							<button type="button" ng-click="dropMarker()" class="btn btn-sm btn-primary">
+								<i class="fa fa-map-marker fa-lg"></i><span class="hidden-xs"> Drop marker</span>
+							</button>
 						</div>
 
 						<div class="input-group-btn">
-							<button type="button" ng-click="getPosition()" class="btn btn-sm btn-success"><i class="fa fa-compass fa-lg"></i> Use Geolocation</button>
+							<button type="button" ng-click="getPosition()" class="btn btn-sm btn-success">
+								<i class="fa fa-compass fa-lg"></i><span class="hidden-xs"> Use Geolocation</span>
+							</button>
 						</div>
 					</div>
+
+					<button class="btn btn-sm btn-default visible-xs-inline">Values</button>
 				</div>
+
 
 			</div><!--.map-controls-->
 		</div><!--#map-->
