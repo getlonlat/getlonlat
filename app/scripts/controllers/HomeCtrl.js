@@ -12,6 +12,7 @@ function HomeCtrl($scope, $location, $window, Map)
 		$scope.zooms 		 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 		$scope.latitude  = 0;
 		$scope.longitude = 0;
+		$scope.startLonlat = { lon: 0, lat: 0 };
 
 		$scope.baselayer  = 0;
 		$scope.separator  = 'comma';
@@ -21,25 +22,23 @@ function HomeCtrl($scope, $location, $window, Map)
 		Map.init({
 			id: 'map',
 			startZoom: $scope.zoom,
-			startPoint: { lon: 0, lat: 0 },
-			onSelectPoint: $scope.onSelectPoint
+			startLonlat: $scope.startLonlat
 		});
 
 		Map.getActualZoom(function(zoom) {
 			$scope.zoom = zoom;
-			_applyPhase();
+			_apply();
 		});
 
-		Map.enableDragPoint(function(point) {
-			_updateValues(point);
-		});
+		Map.enableDragPoint(function(point) { _updateValues(point); });
 
 		$scope.dropMarker();
+		Map.showPopup($scope.startLonlat, 'Drag me to update the values');
 
 		angular.element($window).bind('resize', function() { Map.fixMapHeight(); });
 	}
 
-	function _applyPhase()
+	function _apply()
 	{
 		if(!$scope.$$phase) $scope.$apply();
 	};
@@ -70,7 +69,10 @@ function HomeCtrl($scope, $location, $window, Map)
 		$scope.latlon = point.lat + _separator() + point.lon;
 		$scope.lonlat = point.lon + _separator() + point.lat;
 
-		_applyPhase();
+		var content = '<small>Lon/Lat</small><br><b>' + point.lon + _separator() + point.lat + '</b>';
+		Map.showPopup($scope.actualPoint, content);
+
+		_apply();
 	};
 
 	function _addMarker(point, opts)
@@ -93,14 +95,11 @@ function HomeCtrl($scope, $location, $window, Map)
 		$location.path(to);
 	};
 
-	$scope.dropMarker = function(point)
+	$scope.dropMarker = function(lonlat)
 	{
-		if (!point)
-		{
-			point = Map.getCenter();
-		}
+		lonlat = lonlat || Map.getCenter();
 
-		_addMarker(point);
+		_addMarker(lonlat);
 	};
 
 	$scope.getPosition = function()
@@ -130,7 +129,7 @@ function HomeCtrl($scope, $location, $window, Map)
 			.success(function(response) {
 				$scope.places = response.results;
 				$scope.searchingPlaces = false;
-				_applyPhase();
+				_apply();
 			});
 	};
 
@@ -146,7 +145,7 @@ function HomeCtrl($scope, $location, $window, Map)
 		point = Map.transform(point, $scope.defaultProjection, 'EPSG:900913');
 
 		_addMarker(point, { center: true, zoom: 13 });
-		_applyPhase();
+		_apply();
 	};
 
 	$scope.changeZoom = function(zoom)
@@ -157,16 +156,6 @@ function HomeCtrl($scope, $location, $window, Map)
 	$scope.changeBaselayer = function(baselayer)
 	{
 		Map.setBaseLayer(baselayer);
-	};
-
-	$scope.onSelectPoint = function(feature)
-	{
-		var content = '<h4>' + feature.data.place + '<br>' + feature.data.temperatures + '</h4>';
-
-		Map.showPopup({
-			content:  content,
-			position: feature.geometry
-		});
 	};
 
 	_init();

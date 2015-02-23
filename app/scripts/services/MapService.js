@@ -33,7 +33,7 @@ function MapService($http)
 	    });
 
 	    self._startZoom  = opts.startZoom;
-	    self._startPoint = new OpenLayers.LonLat(opts.startPoint.lon, opts.startPoint.lat);
+	    self._startLonlat = new OpenLayers.LonLat(opts.startLonlat.lon, opts.startLonlat.lat);
 
 	    self._layers     = [];
 	    self._baselayers = [];
@@ -193,7 +193,7 @@ function MapService($http)
 	  		point = point.transform(new OpenLayers.Projection(opts.transformTo), self._map.getProjection());
 	  	}
 
-	    self._map.setCenter(point || self._startPoint, zoom || self._startZoom);
+	    self._map.setCenter(point || self._startLonlat, zoom || self._startZoom);
 	  },
 
 	  setZoom: function(zoom)
@@ -270,33 +270,41 @@ function MapService($http)
 		onSelectFeature: function(feature)
 		{
 			var self = this;
+			console.log('feature', feature);
+
 			if(feature.geometry.id.indexOf("Point") > -1)
 			{
 				self.onSelectPointFeature(feature);
 			}
 		},
 
-		showPopup: function(opts)
+		showPopup: function(lonlat, content, opts)
 		{
 			var self = this,
-					popup,
+					opts = opts || {},
+					popup = null,
 					defaultOpts = {
+						clear: true,
 						type: 'Point'
 					};
 
 			OpenLayers.Util.applyDefaults(opts, defaultOpts);
 
-			self.removePopups();
-
 			popup = new OpenLayers.Popup('Popup ' + opts.type,
-				new OpenLayers.LonLat(opts.position.x, opts.position.y),
+				new OpenLayers.LonLat(lonlat.lon, lonlat.lat),
 				null,
-				opts.content,
+				content,
 				true
 			);
 			popup.opacity = .9;
 
+			if (opts.hasOwnProperty('clear') && opts.clear)
+			{
+				self.removePopups();
+			}
+
 			self._map.addPopup(popup);
+
 			popup.fixPadding();
 			popup.updateSize();
 		},
