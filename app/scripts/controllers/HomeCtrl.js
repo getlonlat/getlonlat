@@ -64,12 +64,15 @@ function HomeCtrl($scope, $location, $window, Map)
 			point = Map.transform(point, $scope.defaultProjection, $scope.projection);
 		}
 
+		var s = _separator();
+
 		$scope.longitude = point.lon;
 		$scope.latitude  = point.lat;
-		$scope.latlon = point.lat + _separator() + point.lon;
-		$scope.lonlat = point.lon + _separator() + point.lat;
+		$scope.latlon = point.lat + s + point.lon;
+		$scope.lonlat = point.lon + s + point.lat;
 
-		var content = '<small>Lon/Lat</small><br><b>' + point.lon + _separator() + point.lat + '</b>';
+
+		var content = '<small>Longitude' + s + 'Latitude</small><br><b>' + point.lon + s + point.lat + '</b>';
 		Map.showPopup($scope.actualPoint, content);
 
 		_apply();
