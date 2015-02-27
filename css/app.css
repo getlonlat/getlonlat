@@ -62,3 +62,12 @@ a.olControlZoomIn {
 	bottom: 2px;
 	right: auto;
 }
+
+.olPopupContent {
+    padding: 2px 3px;
+    overflow: auto;
+}
+.olPopupCloseBox {
+  background: url("/img/close.gif") no-repeat;
+  cursor: pointer;
+}
