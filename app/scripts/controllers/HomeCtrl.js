@@ -1,7 +1,7 @@
 /*
  * Home Controller
  */
-function HomeCtrl($scope, $location, $window, Map)
+function HomeCtrl($scope, $location, $window, focus, Map)
 {
 	var map_marker = '/img/target.png';
 
@@ -35,6 +35,8 @@ function HomeCtrl($scope, $location, $window, Map)
 		});
 
 		$scope.dropMarker();
+
+		focus('queryPlace');
 
 		angular.element($window).bind('resize', function() { Map.fixMapHeight(); });
 	}
@@ -174,4 +176,4 @@ function HomeCtrl($scope, $location, $window, Map)
 
 angular
 	.module('app.controllers')
-	.controller('HomeCtrl', ['$scope', '$location', '$window', 'Map', HomeCtrl]);
+	.controller('HomeCtrl', ['$scope', '$location', '$window', 'focus', 'Map', HomeCtrl]);

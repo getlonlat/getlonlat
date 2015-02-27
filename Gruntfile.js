@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 					'vendor/bootstrap/dist/js/bootstrap.js',
 					'vendor/angular/angular.js',
 					'vendor/angular-touch/angular-touch.js',
+					'vendor/angular-focus-it/angular-focus-it.js',
 					'vendor/angular-route/angular-route.js',
 
 					'app/scripts/controllers/main.js',

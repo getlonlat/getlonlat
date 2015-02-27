@@ -98,7 +98,7 @@
 				<div class="form-group">
 					<div class="input-group">
 						<input ng-model="queryPlace" ng-change="searchPlace(queryPlace);" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
-						 autofocus type="search" placeholder="Type to search a place" class="form-control input-sm">
+						   id="queryPlace" type="search" placeholder="Type to search a place" class="form-control input-sm">
 						<ul class="list-group">
 							<li ng-repeat="place in places" ng-click="selectPlace(place);" class="list-group-item text-left">{{ place.formatted_address }}</li>
 						</ul>

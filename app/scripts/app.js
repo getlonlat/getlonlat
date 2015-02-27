@@ -1,10 +1,10 @@
 angular.module('app', [
 	'ngRoute',
+	'focusIt',
 
 	'app.controllers',
 	'app.directives',
 	'app.services',
-	'app.factories',
 ])
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider
