@@ -560,6 +560,11 @@ function MapService($http)
 			});
 		},
 
+		getGeoIP: function()
+		{
+			return $http.jsonp('http://www.telize.com/geoip?callback=JSON_CALLBACK');
+		},
+
 		fixMapHeight: function()
 		{
 			var self   = this,

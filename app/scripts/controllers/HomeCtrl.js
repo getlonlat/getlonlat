@@ -19,6 +19,9 @@ function HomeCtrl($scope, $location, $window, focus, Map)
 		$scope.projection = 'EPSG:4326';
 		$scope.defaultProjection = 'EPSG:4326';
 
+		$scope.ip = '';
+		$scope.geoip     = null;
+
 		Map.init({
 			id: 'map',
 			startZoom: $scope.zoom,
@@ -36,6 +39,12 @@ function HomeCtrl($scope, $location, $window, focus, Map)
 		Map.showPopup($scope.startLonlat, 'Drag me to update the values');
 
 		focus('queryPlace');
+
+		Map.getGeoIP()
+			.success(function(geoip) {
+				$scope.geoip = geoip;
+				_apply();
+			});
 
 		angular.element($window).bind('resize', function() { Map.fixMapHeight(); });
 	}
@@ -119,6 +128,29 @@ function HomeCtrl($scope, $location, $window, focus, Map)
 			// always execute after success and error
 			$scope.gettingPosition = false;
 		});
+	};
+
+	$scope.getGeoIP = function()
+	{
+		$scope.gettingGeoIP = true;
+
+		Map.getGeoIP()
+			.success(function(geoip) {
+				$scope.geoip = geoip;
+				$scope.gettingGeoIP = false;
+
+				_apply();
+			})
+			.error(function(error) {
+				$scope.gettingGeoIP = false;
+				_apply();
+			});
+	};
+
+	$scope.closeGeoIP = function()
+	{
+		$scope.geoip = null;
+		_apply();
 	};
 
 	$scope.updateValues = function()

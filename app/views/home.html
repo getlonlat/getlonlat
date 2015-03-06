@@ -44,6 +44,44 @@
 			</div>
 		</fieldset>
 
+		<fieldset ng-show="geoip">
+			<legend>
+				GeoIP
+				<button ng-click="closeGeoIP();" type="button" class="btn btn-link pull-right" title="Hide GeoIP information"><i class="fa fa-times"></i></button>
+			</legend>
+
+			<table class="table table-bordered table-striped table-condensed">
+				<tr>
+					<th><abbr title="IP Address">IP</abbr></th>
+					<td>{{ geoip.ip }}</td>
+				</tr>
+				<tr ng-show="geoip.city">
+					<th>City</th>
+					<td>{{ geoip.city }}</td>
+				</tr>
+				<tr>
+					<th>Country</th>
+					<td>{{ geoip.country }} ({{ geoip.country_code}})</td>
+				</tr>
+				<tr>
+					<th>Latitude</th>
+					<td>{{ geoip.latitude }}</td>
+				</tr>
+				<tr>
+					<th>Longitude</th>
+					<td>{{ geoip.longitude }}</td>
+				</tr>
+				<tr>
+					<th><abbr title="Internet service provider">ISP</abbr></th>
+					<td>{{ geoip.isp }}</td>
+				</tr>
+				<tr ng-show="{{ geoip.timezone }}">
+					<th>Timezone</th>
+					<td>{{ geoip.timezone }}</td>
+				</tr>
+			</table>
+		</fieldset>
+
 		<fieldset>
 			<legend>Settings</legend>
 
@@ -109,6 +147,10 @@
 
 						<div class="input-group-btn">
 							<button type="button" ng-click="getPosition()" class="btn btn-sm btn-success"><i class="fa fa-compass fa-lg"></i> Use Geolocation</button>
+						</div>
+
+						<div class="input-group-btn">
+							<button type="button" ng-click="getGeoIP()" class="btn btn-sm btn-info" title="Powered by Telize"><i class="fa fa-globe fa-lg"></i> Use GeoIP</button>
 						</div>
 					</div>
 				</div>
