@@ -40,12 +40,6 @@ function HomeCtrl($scope, $location, $window, focus, Map)
 
 		focus('queryPlace');
 
-		Map.getGeoIP()
-			.success(function(geoip) {
-				$scope.geoip = geoip;
-				_apply();
-			});
-
 		angular.element($window).bind('resize', function() { Map.fixMapHeight(); });
 	}
 
@@ -139,7 +133,10 @@ function HomeCtrl($scope, $location, $window, focus, Map)
 				$scope.geoip = geoip;
 				$scope.gettingGeoIP = false;
 
-				_apply();
+				var lonlat = { lon: geoip.longitude, lat: geoip.latitude };
+				lonlat = Map.transform(lonlat, 'EPSG:4326', 'EPSG:900913');
+
+				_addMarker(lonlat, { center: true, zoom: 14 });
 			})
 			.error(function(error) {
 				$scope.gettingGeoIP = false;
@@ -182,7 +179,6 @@ function HomeCtrl($scope, $location, $window, focus, Map)
 		point = Map.transform(point, $scope.defaultProjection, 'EPSG:900913');
 
 		_addMarker(point, { center: true, zoom: 13 });
-		_apply();
 	};
 
 	$scope.changeZoom = function(zoom)
