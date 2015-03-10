@@ -62,9 +62,10 @@ function MapService($http)
 	    var self = this;
 
 	    self._baselayer = {
-				OSM: 				   		0,
-				GOOGLE_MAP:    		1,
-				GOOGLE_MAP_NIGHT: 2,
+				OSM: 				   		 0,
+				GOOGLE_MAP:    		 1,
+				GOOGLE_MAP_NIGHT:  2,
+				GOOGLE_MAP_HYBRID: 3
 			};
 
 			self._baselayers = [
@@ -75,6 +76,10 @@ function MapService($http)
 				new OpenLayers.Layer.Google('Google Maps Night', {
 					type: 'styled',
 					numZoomLevels: 19
+				}),
+				new OpenLayers.Layer.Google('Google Maps Satellite', {
+					numZoomLevels: 19,
+					type: google.maps.MapTypeId.HYBRID
 				})
 			];
 
