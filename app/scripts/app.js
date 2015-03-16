@@ -6,7 +6,7 @@ angular.module('app', [
 	'app.directives',
 	'app.services',
 ])
-.config(['$routeProvider', function($routeProvider) {
+.config(['$provide', '$routeProvider', function($provide, $routeProvider) {
 	$routeProvider
 		.when('/home', {
 			controller:  'HomeCtrl',
@@ -15,4 +15,11 @@ angular.module('app', [
 		.otherwise({
 			redirectTo: '/home'
 		});
+
+	$provide.decorator("$exceptionHandler", function ($delegate) {
+		return function (exception, cause) {
+			$delegate(exception, cause);
+			ga('send', 'event', 'AngularJS error', exception.message, exception.stack, 0, true);
+		};
+	});
 }]);

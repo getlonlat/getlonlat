@@ -2,3 +2,8 @@
 
 ga('create', 'UA-42715915-3', 'auto');
 ga('send', 'pageview');
+
+window.addEventListener('error', function(err) {
+	var lineAndColumnInfo = err.colno ? ' line: ' + err.lineno + ', column:' + err.colno : ' line:' + err.lineno;
+	ga('send', 'event', 'JavaScript Error', err.message, err.filename + lineAndColumnInfo + '->' + navigator.userAgent, 0, true);
+});
