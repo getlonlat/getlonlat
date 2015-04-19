@@ -19,19 +19,11 @@ module.exports = function(grunt) {
 					'vendor/angular-focus-it/angular-focus-it.js',
 					'vendor/angular-route/angular-route.js',
 
-					'app/scripts/controllers/main.js',
-					'app/scripts/controllers/HomeCtrl.js',
-
-					'app/scripts/directives/main.js',
-					'app/scripts/directives/sdFocusOn.js',
-
-					'app/scripts/services/main.js',
-					'app/scripts/services/MapService.js',
-
-					'app/scripts/factories/main.js',
-					'app/scripts/factories/FocusFactory.js',
-
-					'app/scripts/app.js',
+					'app/app.js',
+					'app/config.js',
+					'app/routes.js',
+					'app/components/home/HomeController.js',
+					'app/services/MapService.js',
 				]
 			}
 		},
@@ -74,7 +66,7 @@ module.exports = function(grunt) {
 
 		watch: {
 			dev: {
-				files: ['Gruntfile.js', 'app/scripts/**/*.js', 'css/**/*.css'],
+				files: ['Gruntfile.js', 'app/**/*.js', 'css/**/*.css'],
 				tasks: ['concat:app', 'cssmin'],
 				options: {
 					atBegin: true,
@@ -84,7 +76,7 @@ module.exports = function(grunt) {
 		},
 
 		jshint: {
-			all: ['Gruntfile.js', 'app/scripts/**/*.js']
+			all: ['Gruntfile.js', 'app/**/*.js']
 		}
 	});
 

@@ -1,7 +1,8 @@
+'use strict';
 /*
  * Home Controller
  */
-function HomeCtrl($scope, $location, $window, focus, Map)
+function HomeController($scope, $location, $window, focus, Map)
 {
 	var map_marker = '/img/target.png';
 
@@ -195,5 +196,5 @@ function HomeCtrl($scope, $location, $window, focus, Map)
 };
 
 angular
-	.module('app.controllers')
-	.controller('HomeCtrl', ['$scope', '$location', '$window', 'focus', 'Map', HomeCtrl]);
+	.module('app')
+	.controller('HomeController', HomeController);

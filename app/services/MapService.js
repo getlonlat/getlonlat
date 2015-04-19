@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Map Service
  *
@@ -14,7 +15,6 @@ function MapService($http)
 
 			this.setCenterMap();
 			this.fixMapHeight();
-			this.bindEvents();
 		},
 
 		/**
@@ -576,21 +576,17 @@ function MapService($http)
 					height = window.innerHeight,
 					element = self._map.div.id;
 
-			height -=  106;
-			element = document.getElementById(element);
-			element.style.height = height + 'px';
-			self._map.updateSize();
-		},
-
-		bindEvents: function()
-		{
-			var self = this;
-
-
+			if(element)
+			{
+				height -=  106;
+				element = document.getElementById(element);
+				element.style.height = height + 'px';
+				self._map.updateSize();
+			}
 		}
 	};
 }
 
 angular
-	.module('app.services')
-	.service('Map', ['$http', MapService]);
+	.module('app')
+	.service('Map', MapService);
