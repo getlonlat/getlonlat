@@ -3,7 +3,7 @@ body {
 }
 
 #map {
-	position: absolute;
+	position: relative;
 }
 
 .brand {
@@ -18,36 +18,18 @@ body {
 	z-index: 999;
 }
 
-div.olControlZoom {
+.zoom-controls {
 	position: absolute;
-	right: 8px;
 	bottom: 20px;
-	background: rgba(255,255,255,.4);
-	border-radius: 4px;
-	padding: 4px;
+	right: 20px;
+	z-index: 999;
+}
+.zoom-controls .btn {
+	background-color: rgba(100, 100, 100, .8);
 }
 
-div.olControlZoom a {
-	display: block;
-	margin: 1px;
-	padding: 0;
-	color: #fff;
-	font-size: 28px;
-	font-family: sans-serif;
-	font-weight: 700;
-	text-decoration: none;
-	text-align: center;
-	height: 35px;
-	width: 35px;
-	line-height: 35px;
-	text-shadow: 0 0 3px rgba(0,0,0,.8);
-	background: #130085;
-	background: rgba(0,60,136,.5);
-	filter: alpha(opacity=80);
-}
-a.olControlZoomIn {
-	border-radius: 4px 4px 0 0;
-}
+div.olControlZoom { display: none; }
+
 .olLayerGoogleCopyright {
     right: 3px;
     bottom: 2px;

@@ -187,6 +187,16 @@ function HomeController($scope, $location, $window, focus, Map)
 		Map.setZoom(zoom);
 	};
 
+	$scope.zoomIn = function()
+	{
+		Map.zoomIn();
+	};
+
+	$scope.zoomOut = function()
+	{
+		Map.zoomOut();
+	};
+
 	$scope.changeBaselayer = function(baselayer)
 	{
 		Map.setBaseLayer(baselayer);

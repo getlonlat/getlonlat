@@ -206,6 +206,16 @@ function MapService($http)
 	  	this._map.setCenter(null, zoom);
 	  },
 
+	  zoomIn: function()
+	  {
+	  	this._map.zoomIn();
+	  },
+
+	  zoomOut: function()
+	  {
+	  	this._map.zoomOut();
+	  },
+
 		/**
 		* Desenha um ponto no mapa
 		* @param {Object} ponto simplificado
