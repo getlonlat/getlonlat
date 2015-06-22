@@ -9,7 +9,7 @@
 		.module('app')
 		.service('Map', MapService);
 
-	function MapService($http) {
+	function MapService() {
 
 		var self = this;
 
