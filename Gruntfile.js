@@ -64,14 +64,22 @@
 			},
 
 			watch: {
-				dev: {
-					files: ['Gruntfile.js', 'app/**/*.js', 'css/**/*.css'],
-					tasks: ['concat:app', 'cssmin'],
+				js: {
+					files: ['Gruntfile.js', 'app/**/*.js'],
+					tasks: ['concat:app', 'jshint'],
 					options: {
 						atBegin: true,
 						liveReload: true
 					}
 				},
+				css: {
+					files: ['css/**/*.css'],
+					tasks: ['cssmin'],
+					options: {
+						atBegin: true,
+						liveReload: true
+					}
+				}
 			},
 
 			jshint: {
