@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-4 col-md-3 col-lg-3">
+	<div class="col-sm-4 col-md-3 col-lg-3 pull-{{ side }}">
 		<h2 class="text-center">
 			<a href="#/">
 				<img src="/img/target.png" alt="" class="brand"> getLonLat
@@ -107,6 +107,16 @@
 				</div>
 			</div>
 
+			<div class="form-group" title="Side to show the map">
+				<div class="input-group input-group-sm">
+					<div class="input-group-addon">Map Side</div>
+					<select ng-model="side" class="form-control">
+						<option value="right">Left</option>
+						<option value="left">Right</option>
+					</select>
+				</div>
+			</div>
+
 			<div class="form-group" title="Projection">
 				<div class="input-group input-group-sm">
 					<div class="input-group-addon">Output EPSG</div>
@@ -122,8 +132,12 @@
 
 			<hr>
 			<p class="text-muted text-center">
-				<small><b>{{ year }}</b> - getLonLat</small>
-				<a href="http://hewertho.mn/projects/getlonlat" class="btn btn-xs btn-link">about</a>
+				<small>
+					<b>{{ year }}</b> - getLonLat
+					<a href="http://hewertho.mn/projects/getlonlat" class="btn btn-xs btn-link">about</a>
+					<br>
+					Repositório <a href="https://github.com/hewerthomn/getlonlat" target="_blank">github.com/hewerthomn/getlonlat</a>
+				</small>
 			</p>
 		</fieldset>
 	</div><!--.col-->

@@ -1,19 +1,23 @@
-'use strict';
-/**
- * Route Config
- */
-function RouteConfig($routeProvider) {
+(function(angular, undefined) {
+	'use strict';
 
-	$routeProvider
-		.when('/home', {
-			controller:  'HomeController',
-			templateUrl: '/app/components/home/home.html'
-		})
-		.otherwise({
-			redirectTo: '/home'
-		});
-};
+	/**
+	 * Route Config
+	 */
+	angular
+		.module('app')
+		.config(RouteConfig);
 
-angular
-	.module('app')
-	.config(RouteConfig);
+	function RouteConfig($routeProvider) {
+
+		$routeProvider
+			.when('/home', {
+				controller:  'HomeController',
+				templateUrl: '/app/components/home/home.html'
+			})
+			.otherwise({
+				redirectTo: '/home'
+			});
+	}
+
+})(window.angular);
