@@ -23,6 +23,7 @@
 						'app/routes.js',
 						'app/components/home/HomeController.js',
 						'app/services/MapService.js',
+						'app/services/GeocoderService.js'
 					]
 				}
 			},
