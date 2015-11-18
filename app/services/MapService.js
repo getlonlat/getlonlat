@@ -1,4 +1,4 @@
-(function(angular, OpenLayers, undefined) {
+(function(angular, google, OpenLayers, undefined) {
 	'use strict';
 
 	/**
@@ -145,7 +145,6 @@
 		};
 
 	  this.setCenterMap = function(point, zoom, opts) {
-	  	var defaultOpts = {};
 	  	opts = opts || {};
 
 	  	if(point && !point.hasOwnProperty('CLASS_NAME') && point.CLASS_NAME !== 'OpenLayers.LonLat') {
@@ -247,8 +246,6 @@
 		};
 
 	  this.getPosition = function(callbackSuccess, callbackFailed, callbackAlways) {
-	  	var point;
-
 	  	if(!self._layers.hasOwnProperty('geolocate')) {
 	  		self._layers.geolocate = new OpenLayers.Layer.Vector('Geolocate');
 	      self._map.addLayer(self._layers.geolocate);
@@ -379,4 +376,4 @@
 		};
 	}
 
-})(window.angular, OpenLayers);
+})(window.angular, window.google, window.OpenLayers);
