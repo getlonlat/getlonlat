@@ -1,4 +1,4 @@
-(function(angular, undefined) {
+(function(angular, ga, undefined) {
 	'use strict';
 
 	/**
@@ -18,4 +18,4 @@
 		});
 	}
 
-})(window.angular);
+})(window.angular, window.ga);
