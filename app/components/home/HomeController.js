@@ -51,7 +51,7 @@
 
 			focus('queryPlace');
 
-			angular.element($window).bind('resize', function() { Map.fixMapHeight(); });
+			// angular.element($window).bind('resize', function() { Map.fixMapHeight(); });
 		}
 
 		function _apply() {

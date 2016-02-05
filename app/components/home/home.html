@@ -1,49 +1,122 @@
+<h3 class="text-center">
+	<a href="#/">
+		<img src="/img/target.png" alt="" class="brand">
+		getLonLat
+	</a>
+</h3>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-addon">
+			<i class="fa fa-search text-muted"></i>
+		</div>
+		<input ng-model="queryPlace" ng-change="searchPlace(queryPlace);" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+		   id="queryPlace" type="search" placeholder="Type to search a place" class="form-control input-sm">
+		<ul class="list-group place-search">
+			<li ng-repeat="place in places" ng-click="selectPlace(place);" class="list-group-item text-left">{{ place.formatted_address }}</li>
+		</ul>
+	</div>
+</div>
+
+<div id="map" class="well well-sm">
+	<div class="zoom-controls btn-group-vertical" role="group">
+		<button ng-click="zoomIn()" class="btn btn-default"><i class="fa fa-plus"></i></button>
+		<button ng-click="zoomOut()" class="btn btn-default"><i class="fa fa-minus"></i></button>
+	</div>
+</div>
+
+<fieldset>
+	<div class="row text-center">
+		<div class="col-md-1">
+			<div class="form-group">
+				<label for="zoom">ZOOM</label>
+				<select id="zoom" ng-model="zoom" ng-change="changeZoom(zoom);" class="form-control">
+					<option ng-repeat="z in zooms">{{ z }}</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="latitude">LATITUDE</label>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<b class="text-danger">Y</b>
+					</div>
+					<input id="latitude" type="text" class="form-control text-right" value="{{ latitude }}">
+					<div ng-hide="true" class="input-group-btn">
+						<button type="button" class="btn btn-sm btn-link">
+							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="longitude">LONGITUDE</label>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<b class="text-danger">X</b>
+					</div>
+					<input id="longitude" type="text" class="form-control text-right" value="{{ longitude }}">
+					<div ng-hide="true" class="input-group-btn">
+						<button type="button" class="btn btn-sm btn-link">
+							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<div ng-show="true" class="form-group">
+				<label for="latlon">
+					LATITUDE / LONGITUDE
+					<a href="" class="btn btn-xs btn-default">
+						<i class="fa fa-retweet"></i>
+					</a>
+				</label>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<b class="text-danger">
+							X Y
+						</b>
+					</div>
+					<input id="latlon" type="text" class="form-control" rows="2" value="{{ latlon }}">
+					<div ng-hide="true" class="input-group-btn">
+						<button type="button" class="btn btn-sm btn-link">
+							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="false" class="form-group">
+				<label for="lonlat">
+					LONGITUDE / LATITUDE
+					<a ng-hide="true" href="" class="btn btn-xs btn-link">
+						<i class="fa fa-retweet"></i>
+					</a>
+				</label>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<b class="text-danger">
+							Y X
+						</b>
+					</div>
+					<input id="lonlat" type="text" class="form-control" rows="2" value="{{ lonlat }}">
+					<div ng-hide="true" class="input-group-btn">
+						<button type="button" class="btn btn-sm btn-link">
+							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</fieldset>
+
 <div class="row">
-	<div class="col-sm-4 col-md-3 col-lg-3 pull-{{ side }}">
-		<h2 class="text-center">
-			<a href="#/">
-				<img src="/img/target.png" alt="" class="brand"> getLonLat
-			</a>
-		</h2>
-		<hr>
-
-		<fieldset>
-			<legend>Values</legend>
-
-			<div class="form-group">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Zoom</div>
-					<select ng-model="zoom" ng-change="changeZoom(zoom);" class="form-control">
-						<option ng-repeat="z in zooms">{{ z }}</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Latitude <b>Y</b></div>
-					<input type="text" class="form-control text-right" value="{{ latitude }}">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Longitude <b>X</b></div>
-					<input type="text" class="form-control text-right" value="{{ longitude }}">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label>Latitude / Longitude</label>
-				<textarea type="text" class="form-control input-sm" rows="2">{{ latlon }}</textarea>
-			</div>
-
-			<div class="form-group">
-				<label>Longitude / Latitude</label>
-				<textarea type="text" class="form-control input-sm" rows="2">{{ lonlat }}</textarea>
-			</div>
-		</fieldset>
-
+	<div class="col-sm-4 col-md-3 col-lg-3">
 		<fieldset ng-show="geoip">
 			<legend>
 				GeoIP
@@ -81,101 +154,67 @@
 				</tr>
 			</table>
 		</fieldset>
-
-		<fieldset>
-			<legend>Settings</legend>
-
-			<div class="form-group">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Separator</div>
-					<select ng-model="separator" ng-change="updateValues();" class="form-control">
-						<option value="space">Space</option>
-						<option value="comma">Comma</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="form-group" title="Map base layer">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Base Layer</div>
-					<select ng-model="baselayer" ng-change="changeBaselayer(baselayer);" class="form-control">
-						<option value="0">OpenStreetMap</option>
-						<option value="1">Google Maps</option>
-						<option value="2">Google Maps Night</option>
-						<option value="3">Google Maps Hibrid</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="form-group" title="Side to show the map">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Map Side</div>
-					<select ng-model="side" class="form-control">
-						<option value="right">Left</option>
-						<option value="left">Right</option>
-					</select>
-				</div>
-			</div>
-
-			<div class="form-group" title="Projection">
-				<div class="input-group input-group-sm">
-					<div class="input-group-addon">Output EPSG</div>
-					<select ng-model="projection" ng-change="updateValues();" class="form-control">
-						<option value="EPSG:4326">4326</option>
-						<option value="EPSG:900913">900913</option>
-						<option value="EPSG:4269">4269</option>
-						<option value="EPSG:2263">2263</option>
-						<option value="EPSG:26918">26918</option>
-					</select>
-				</div>
-			</div>
-
-			<hr>
-			<p class="text-muted text-center">
-				<small>
-					<b>{{ year }}</b> - getLonLat
-					<a href="http://hewertho.mn/projects/getlonlat" class="btn btn-xs btn-link">about</a>
-					<br>
-					Repositório <a href="https://github.com/hewerthomn/getlonlat" target="_blank">github.com/hewerthomn/getlonlat</a>
-				</small>
-			</p>
-		</fieldset>
-	</div><!--.col-->
-
-	<div class="col-sm-8 col-md-9 col-lg-9">
-
-		<div id="map" class="well well-sm" style="width: 98%; heigth: 900px;">
-
-			<div class="map-controls text-right">
-
-				<div class="form-group">
-					<div class="input-group">
-						<input ng-model="queryPlace" ng-change="searchPlace(queryPlace);" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
-						   id="queryPlace" type="search" placeholder="Type to search a place" class="form-control input-sm">
-						<ul class="list-group">
-							<li ng-repeat="place in places" ng-click="selectPlace(place);" class="list-group-item text-left">{{ place.formatted_address }}</li>
-						</ul>
-
-						<div class="input-group-btn">
-							<button type="button" ng-click="dropMarker()" class="btn btn-sm btn-primary"><i class="fa fa-map-marker fa-lg"></i> Drop marker</button>
-						</div>
-
-						<div class="input-group-btn">
-							<button type="button" ng-click="getPosition()" class="btn btn-sm btn-success"><i class="fa fa-compass fa-lg"></i> Use Geolocation</button>
-						</div>
-
-						<div class="input-group-btn">
-							<button type="button" ng-click="getGeoIP()" class="btn btn-sm btn-info" title="Powered by Telize"><i class="fa fa-globe fa-lg"></i> Use GeoIP</button>
-						</div>
-					</div>
-				</div>
-			</div><!--.map-controls-->
-
-			<div class="zoom-controls btn-group-vertical" role="group">
-				<button ng-click="zoomIn()" class="btn btn-default"><i class="fa fa-plus"></i></button>
-				<button ng-click="zoomOut()" class="btn btn-default"><i class="fa fa-minus"></i></button>
-			</div>
-
-		</div><!--#map-->
 	</div>
 </div>
+
+<fieldset class="well well-sm">
+	<div class="row">
+		<div class="col-md-5">
+			<br>
+			<div class="btn-group btn-group-justified">
+				<div class="btn-group">
+					<button type="button" ng-click="getPosition()" class="btn btn-success">
+						<i class="fa fa-compass fa-lg"></i>
+						Geolocation
+					</button>
+				</div>
+
+				<div class="btn-group">
+					<button type="button" ng-click="dropMarker()" class="btn btn-primary">
+						<i class="fa fa-dot-circle-o fa-lg"></i>
+						Drop marker
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="separator">SEPARATOR</label>
+				<select id="separator" ng-model="separator" ng-change="updateValues();" class="form-control">
+					<option value="space">Space</option>
+					<option value="comma">Comma</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group" title="Map base layer">
+				<label for="baselayer">BASE LAYER</label>
+				<select id="baselayer" ng-model="baselayer" ng-change="changeBaselayer(baselayer);" class="form-control">
+					<option value="0">OpenStreetMap</option>
+					<option value="1">Google Maps</option>
+					<option value="2">Google Maps Night</option>
+					<option value="3">Google Maps Hibrid</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group" title="Projection">
+				<label for="projection">OUTPUT EPSG</label>
+				<select id="projection" ng-model="projection" ng-change="updateValues();" class="form-control">
+					<option value="EPSG:4326">EPSG:4326</option>
+					<option value="EPSG:900913">EPSG:900913</option>
+					<option value="EPSG:4269">EPSG:4269</option>
+					<option value="EPSG:2263">EPSG:2263</option>
+					<option value="EPSG:26918">EPSG:26918</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</fieldset>
+
+<p class="text-muted text-center">
+	<small>
+		<b>{{ year }}</b> getLonLat -
+		<a href="https://github.com/hewerthomn/getlonlat" target="_blank">about</a>
+	</small>
+</p>

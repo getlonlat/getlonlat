@@ -1,9 +1,6 @@
-body {
-	padding-top: 10px
-}
-
 #map {
 	position: relative;
+	height: 560px;
 }
 
 .brand {
@@ -25,7 +22,6 @@ body {
 	z-index: 999;
 }
 .zoom-controls .btn {
-	background-color: rgba(100, 100, 100, .8);
 }
 
 div.olControlZoom { display: none; }
@@ -52,4 +48,11 @@ div.olControlZoom { display: none; }
 .olPopupCloseBox {
   background: url("/img/close.gif") no-repeat;
   cursor: pointer;
+}
+
+.place-search {
+	position: absolute;
+	top: 29px;
+	width: 80%;
+	z-index: 999;
 }

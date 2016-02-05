@@ -56,7 +56,7 @@
 				combine: {
 					files: {
 						'build/css/app.min.css': [
-							'css/bootstrap-united.css',
+							'css/bootstrap-paper.min.css',
 							'vendor/font-awesome/css/font-awesome.css',
 							'css/app.css',
 						]

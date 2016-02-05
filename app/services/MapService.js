@@ -124,7 +124,7 @@
 		this.init = function(opts) {
 			_setup(opts);
 
-			self.fixMapHeight();
+			// self.fixMapHeight();
 			self.setCenterMap();
 		};
 
@@ -368,7 +368,7 @@
 			var element = self._map.div.id;
 
 			if(element) {
-				height -=  106;
+				height -=  406;
 				element = document.getElementById(element);
 				element.style.height = height + 'px';
 				self._map.updateSize();
