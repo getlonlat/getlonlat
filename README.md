@@ -1,7 +1,7 @@
 # getLonLat
 App to get Longitude (X-axis) and Latitude (Y-axis) from a place in the world.
 
-You can search for a place name , use geolocation of the device or using [geo targeting](http://en.wikipedia.org/wiki/Geotargeting) service.
+You can search for a place name , use geolocation of the device.
 
 ## Options
 * Convert position to another projections

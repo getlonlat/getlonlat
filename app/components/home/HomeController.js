@@ -27,10 +27,6 @@
 			$scope.projection = 'EPSG:4326';
 			$scope.defaultProjection = 'EPSG:4326';
 
-
-			$scope.ip = '';
-			$scope.geoip     = null;
-
 			Map.init({
 				id: 'map',
 				startZoom: $scope.zoom,
@@ -124,30 +120,6 @@
 				// always execute after success and error
 				$scope.gettingPosition = false;
 			});
-		};
-
-		$scope.getGeoIP = function() {
-			$scope.gettingGeoIP = true;
-
-			Geocoder.getGeoIP()
-				.success(function(geoip) {
-					$scope.geoip = geoip;
-					$scope.gettingGeoIP = false;
-
-					var lonlat = { lon: geoip.longitude, lat: geoip.latitude };
-					lonlat = Map.transform(lonlat, 'EPSG:4326', 'EPSG:900913');
-
-					_addMarker(lonlat, { center: true, zoom: 14 });
-				})
-				.error(function(error) {
-					$scope.gettingGeoIP = false;
-					_apply();
-				});
-		};
-
-		$scope.closeGeoIP = function() {
-			$scope.geoip = null;
-			_apply();
 		};
 
 		$scope.updateValues = function() {
