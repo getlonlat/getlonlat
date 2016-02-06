@@ -5,7 +5,6 @@
 	 * App getLonLat
 	 */
 	angular.module('app', [
-		'ngRoute',
-		'focusIt',
+		'ngRoute'
 	]);
 })(window.angular);
