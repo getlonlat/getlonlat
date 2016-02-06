@@ -8,6 +8,8 @@
 		.module('app')
 		.controller('HomeController', HomeController);
 
+	HomeController.$inject = ['$scope', 'Geocoder', 'Map'];
+
 	function HomeController($scope, Geocoder, Map) {
 
 		var map_marker = '/img/target.png';
