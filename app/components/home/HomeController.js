@@ -22,8 +22,9 @@
 			$scope.latitude  = 0;
 			$scope.longitude = 0;
 			$scope.startLonlat = { lon: 0, lat: 0 };
+			$scope.showLatLon = true;
 
-			$scope.baselayer  = 1;
+			$scope.baselayer  = 0;
 			$scope.separator  = 'comma';
 			$scope.projection = 'EPSG:4326';
 			$scope.defaultProjection = 'EPSG:4326';
@@ -159,6 +160,10 @@
 
 		$scope.changeBaselayer = function(baselayer) {
 			Map.setBaseLayer(baselayer);
+		};
+
+		$scope.toggleLatLon = function() {
+			$scope.showLatLon = !$scope.showLatLon;
 		};
 
 		_init();

@@ -27,62 +27,50 @@
 
 <fieldset>
 	<div class="row text-center">
-		<div class="col-md-1">
+		<div class="col-md-2">
 			<div class="form-group">
-				<label for="zoom">ZOOM</label>
-				<select id="zoom" ng-model="zoom" ng-change="changeZoom(zoom);" class="form-control">
-					<option ng-repeat="z in zooms">{{ z }}</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="form-group">
-				<label for="latitude">LATITUDE</label>
-				<div class="input-group">
-					<div class="input-group-addon">
-						<b class="text-danger">Y</b>
-					</div>
-					<input id="latitude" type="text" class="form-control text-right" value="{{ latitude }}">
-					<div ng-hide="true" class="input-group-btn">
-						<button type="button" class="btn btn-sm btn-link">
-							<i class="fa fa-clipboard fa-lg text-warning"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="form-group">
-				<label for="longitude">LONGITUDE</label>
-				<div class="input-group">
-					<div class="input-group-addon">
-						<b class="text-danger">X</b>
-					</div>
-					<input id="longitude" type="text" class="form-control text-right" value="{{ longitude }}">
-					<div ng-hide="true" class="input-group-btn">
-						<button type="button" class="btn btn-sm btn-link">
-							<i class="fa fa-clipboard fa-lg text-warning"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-5">
-			<div ng-show="true" class="form-group">
-				<label for="latlon">
-					LATITUDE / LONGITUDE
-					<a href="" class="btn btn-xs btn-default">
-						<i class="fa fa-retweet"></i>
-					</a>
+				<label for="latitude">
+					<b class="text-danger">Y</b>
+					LATITUDE
 				</label>
 				<div class="input-group">
-					<div class="input-group-addon">
-						<b class="text-danger">
-							X Y
-						</b>
+					<input id="latitude" type="text" class="form-control input-sm text-right" value="{{ latitude }}">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-sm btn-link">
+							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						</button>
 					</div>
-					<input id="latlon" type="text" class="form-control" rows="2" value="{{ latlon }}">
-					<div ng-hide="true" class="input-group-btn">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="longitude">
+					<b class="text-danger">X</b>
+					LONGITUDE
+				</label>
+				<div class="input-group">
+					<input id="longitude" type="text" class="form-control input-sm text-right" value="{{ longitude }}">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-sm btn-link">
+							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div ng-show="showLatLon" class="form-group">
+				<label for="latlon">
+					<b class="text-danger">X Y</b>
+					LATITUDE / LONGITUDE
+					<button ng-click="toggleLatLon()" class="btn btn-xs btn-link">
+						<i class="fa fa-retweet"></i>
+					</button>
+				</label>
+				<div class="input-group">
+					<input id="latlon" type="text" class="form-control input-sm" value="{{ latlon }}">
+					<div class="input-group-btn">
 						<button type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
 						</button>
@@ -90,21 +78,30 @@
 				</div>
 			</div>
 
-			<div ng-show="false" class="form-group">
+			<div ng-hide="showLatLon" class="form-group">
 				<label for="lonlat">
+					<b class="text-danger">Y X</b>
 					LONGITUDE / LATITUDE
-					<a ng-hide="true" href="" class="btn btn-xs btn-link">
+					<button ng-click="toggleLatLon()" class="btn btn-xs btn-link">
 						<i class="fa fa-retweet"></i>
-					</a>
+					</button>
 				</label>
 				<div class="input-group">
-					<div class="input-group-addon">
-						<b class="text-danger">
-							Y X
-						</b>
+					<input id="lonlat" type="text" class="form-control input-sm" value="{{ lonlat }}">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-sm btn-link">
+							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						</button>
 					</div>
-					<input id="lonlat" type="text" class="form-control" rows="2" value="{{ lonlat }}">
-					<div ng-hide="true" class="input-group-btn">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="geohash">GEOHASH</label>
+				<div class="input-group">
+					<input id="geohash" type="text" class="form-control input-sm" value="{{ geohash }}">
+					<div class="input-group-btn">
 						<button type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
 						</button>
@@ -117,7 +114,7 @@
 
 <fieldset class="well well-sm">
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-4">
 			<br>
 			<div class="btn-group btn-group-justified">
 				<div class="btn-group">
@@ -135,12 +132,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-1">
 			<div class="form-group">
-				<label for="separator">SEPARATOR</label>
-				<select id="separator" ng-model="separator" ng-change="updateValues();" class="form-control">
-					<option value="space">Space</option>
-					<option value="comma">Comma</option>
+				<label for="zoom">ZOOM</label>
+				<select id="zoom" ng-model="zoom" ng-change="changeZoom(zoom);" class="form-control">
+					<option ng-repeat="z in zooms">{{ z }}</option>
 				</select>
 			</div>
 		</div>
@@ -148,10 +144,19 @@
 			<div class="form-group" title="Map base layer">
 				<label for="baselayer">BASE LAYER</label>
 				<select id="baselayer" ng-model="baselayer" ng-change="changeBaselayer(baselayer);" class="form-control">
-					<option value="0">OpenStreetMap</option>
-					<option value="1">Google Maps</option>
+					<option value="0">Google Maps</option>
+					<option value="1">OpenStreetMap</option>
 					<option value="2">Google Maps Night</option>
 					<option value="3">Google Maps Hibrid</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="separator">SEPARATOR</label>
+				<select id="separator" ng-model="separator" ng-change="updateValues();" class="form-control">
+					<option value="space">Space</option>
+					<option value="comma">Comma</option>
 				</select>
 			</div>
 		</div>
