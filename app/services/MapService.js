@@ -52,10 +52,10 @@
 			};
 
 			self._baselayers = [
-				new OpenLayers.Layer.OSM('OpenStreetMap'),
 				new OpenLayers.Layer.Google('Google Maps', {
 					numZoomLevels: 19
 				}),
+				new OpenLayers.Layer.OSM('OpenStreetMap'),
 				new OpenLayers.Layer.Google('Google Maps Night', {
 					type: 'styled',
 					numZoomLevels: 19

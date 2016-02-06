@@ -21,7 +21,7 @@
 			$scope.longitude = 0;
 			$scope.startLonlat = { lon: 0, lat: 0 };
 
-			$scope.baselayer  = 0;
+			$scope.baselayer  = 1;
 			$scope.separator  = 'comma';
 			$scope.projection = 'EPSG:4326';
 			$scope.defaultProjection = 'EPSG:4326';
