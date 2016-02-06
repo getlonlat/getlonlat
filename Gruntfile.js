@@ -4,10 +4,6 @@
 		grunt.initConfig({
 			pkg: grunt.file.readJSON('package.json'),
 			concat: {
-				options: {
-					separator: ';',
-					stripBanners: { block: true, line: true },
-				},
 				app: {
 					dest: 'build/js/app.min.js',
 					src: [
@@ -33,21 +29,14 @@
 			copy: {
 				fonts: {
 					files: [
-						{
-							expand: true,
-							flatten: true,
-							src: ['vendor/font-awesome/fonts/**.*'],
-							dest: 'build/fonts'
-						}
+						{ expand: true, flatten: true, src: ['vendor/font-awesome/fonts/**.*'], dest: 'build/fonts' }
 					]
 				}
 			},
 
 			uglify: {
 				app: {
-					options: {
-						mangle: false
-					},
+					options: { mangle: false },
 					files: {
 						'build/js/app.min.js': ['build/js/app.min.js']
 					}
@@ -71,18 +60,12 @@
 				js: {
 					files: ['Gruntfile.js', 'app/**/*.js'],
 					tasks: ['concat:app', 'jshint'],
-					options: {
-						atBegin: true,
-						liveReload: true
-					}
+					options: { atBegin: true, liveReload: true }
 				},
 				css: {
-					files: ['css/**/*.css'],
+					files: ['Grutfile.js', 'css/**/*.css'],
 					tasks: ['cssmin'],
-					options: {
-						atBegin: true,
-						liveReload: true
-					}
+					options: { atBegin: true, liveReload: true }
 				}
 			},
 
@@ -91,19 +74,14 @@
 			},
 
 		  notify_hooks: {
-		    options: {
-		      enabled: true,
-		      success: true,
-		      max_jshint_notifications: 5
-		    }
+		    options: { enabled: true, success: true, max_jshint_notifications: 5 }
 		  }
 		});
 
 		grunt.loadNpmTasks('grunt-notify');
 		grunt.task.run('notify_hooks');
 
-		grunt.registerTask('dev', ['concat', 'cssmin']);
-		grunt.registerTask('default', ['concat',  'uglify', 'cssmin', 'copy:fonts']);
+		grunt.registerTask('default', ['concat',  'uglify', 'cssmin', 'copy']);
 
 		require('time-grunt')(grunt);
 		require('jit-grunt')(grunt);
