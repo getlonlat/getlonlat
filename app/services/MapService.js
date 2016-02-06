@@ -9,6 +9,8 @@
 		.module('app')
 		.service('Map', MapService);
 
+	MapService.$inject = [];
+
 	function MapService() {
 
 		var self = this;
