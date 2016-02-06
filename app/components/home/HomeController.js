@@ -8,9 +8,9 @@
 		.module('app')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = ['$scope', 'Geocoder', 'Map'];
+	HomeController.$inject = ['$scope', 'geohash', 'Geocoder', 'Map'];
 
-	function HomeController($scope, Geocoder, Map) {
+	function HomeController($scope, geohash, Geocoder, Map) {
 
 		var map_marker = '/img/target.png';
 
@@ -21,6 +21,9 @@
 			$scope.zooms 		 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 			$scope.latitude  = 0;
 			$scope.longitude = 0;
+			$scope.geohash = '';
+			$scope.precision = 12;
+			$scope.precisions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17, 18, 19];
 			$scope.startLonlat = { lon: 0, lat: 0 };
 			$scope.showLatLon = true;
 
@@ -67,6 +70,7 @@
 			$scope.actualPoint = point;
 
 			point = Map.transform(point, 'EPSG:900913', $scope.defaultProjection);
+			$scope.geohash = geohash.encode(point.lat, point.lon, $scope.precision);
 
 			if($scope.projection !== $scope.defaultProjection) {
 				point = Map.transform(point, $scope.defaultProjection, $scope.projection);
@@ -78,7 +82,6 @@
 			$scope.latitude  = point.lat;
 			$scope.latlon = point.lat + s + point.lon;
 			$scope.lonlat = point.lon + s + point.lat;
-
 
 			var content = '<small>Longitude' + s + 'Latitude</small><br><b>' + point.lon + s + point.lat + '</b>';
 			Map.showPopup($scope.actualPoint, content);

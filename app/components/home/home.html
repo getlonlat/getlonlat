@@ -34,7 +34,7 @@
 					LATITUDE
 				</label>
 				<div class="input-group">
-					<input id="latitude" type="text" class="form-control input-sm text-right" value="{{ latitude }}">
+					<input id="latitude" type="text" class="form-control text-center input-sm" value="{{ latitude }}">
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
@@ -50,7 +50,7 @@
 					LONGITUDE
 				</label>
 				<div class="input-group">
-					<input id="longitude" type="text" class="form-control input-sm text-right" value="{{ longitude }}">
+					<input id="longitude" type="text" class="form-control text-center input-sm" value="{{ longitude }}">
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<div ng-show="showLatLon" class="form-group">
 				<label for="latlon">
 					<b class="text-danger">X Y</b>
@@ -69,7 +69,7 @@
 					</button>
 				</label>
 				<div class="input-group">
-					<input id="latlon" type="text" class="form-control input-sm" value="{{ latlon }}">
+					<input id="latlon" type="text" class="form-control text-center input-sm" value="{{ latlon }}">
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
@@ -87,7 +87,7 @@
 					</button>
 				</label>
 				<div class="input-group">
-					<input id="lonlat" type="text" class="form-control input-sm" value="{{ lonlat }}">
+					<input id="lonlat" type="text" class="form-control text-center input-sm" value="{{ lonlat }}">
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
@@ -96,11 +96,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="form-group">
 				<label for="geohash">GEOHASH</label>
 				<div class="input-group">
-					<input id="geohash" type="text" class="form-control input-sm" value="{{ geohash }}">
+					<input id="geohash" type="text" class="form-control text-center input-sm" value="{{ geohash }}">
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
@@ -133,14 +133,22 @@
 			</div>
 		</div>
 		<div class="col-md-1">
-			<div class="form-group">
+			<div class="form-group" title="Map zoom">
 				<label for="zoom">ZOOM</label>
 				<select id="zoom" ng-model="zoom" ng-change="changeZoom(zoom);" class="form-control">
 					<option ng-repeat="z in zooms">{{ z }}</option>
 				</select>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-1">
+			<div class="form-group" title="Geohash precision">
+				<label for="precision">PRECISION</label>
+				<select id="precision" ng-model="precision" ng-change="updateValues();" class="form-control">
+					<option ng-repeat="p in precisions">{{ p }}</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-2">
 			<div class="form-group" title="Map base layer">
 				<label for="baselayer">BASE LAYER</label>
 				<select id="baselayer" ng-model="baselayer" ng-change="changeBaselayer(baselayer);" class="form-control">
@@ -152,7 +160,7 @@
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div class="form-group">
+			<div class="form-group" title="Lat/Lon separator">
 				<label for="separator">SEPARATOR</label>
 				<select id="separator" ng-model="separator" ng-change="updateValues();" class="form-control">
 					<option value="space">Space</option>
@@ -161,7 +169,7 @@
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div class="form-group" title="Projection">
+			<div class="form-group" title="Output projection">
 				<label for="projection">OUTPUT EPSG</label>
 				<select id="projection" ng-model="projection" ng-change="updateValues();" class="form-control">
 					<option value="EPSG:4326">EPSG:4326</option>

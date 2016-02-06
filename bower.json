@@ -24,6 +24,7 @@
     "bootstrap": "~3.3.2",
     "openlayers": "git://github.com/v5analytics/openlayers.git",
     "font-awesome": "~4.3.0",
-    "angular-focus-it": "~1.*"
+    "angular-focus-it": "~1.*",
+    "angular-geohash": "^0.2.0"
   }
 }

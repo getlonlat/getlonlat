@@ -5,6 +5,7 @@
 	 * App getLonLat
 	 */
 	angular.module('app', [
-		'ngRoute'
+		'ngRoute',
+		'angular-geohash'
 	]);
 })(window.angular);

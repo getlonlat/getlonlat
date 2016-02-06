@@ -16,6 +16,7 @@
 						'vendor/angular/angular.js',
 						'vendor/angular-touch/angular-touch.js',
 						'vendor/angular-route/angular-route.js',
+						'vendor/angular-geohash/dist/angular-geohash.min.js',
 
 						'app/app.js',
 						'app/config.js',
