@@ -163,11 +163,6 @@
 			Map.setBaseLayer(baselayer);
 		};
 
-		$scope.changeSide = function(side) {
-			$scope.side = side;
-			_apply();
-		};
-
 		_init();
 	}
 
