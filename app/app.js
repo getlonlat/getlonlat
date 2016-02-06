@@ -7,6 +7,7 @@
 	angular.module('app', [
 		'ngRoute',
 		'angular-geohash',
-		'angular-clipboard'
+		'angular-clipboard',
+		'toastr'
 	]);
 })(window.angular);

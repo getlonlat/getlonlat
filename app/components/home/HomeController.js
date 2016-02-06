@@ -8,9 +8,9 @@
 		.module('app')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = ['$scope', 'geohash', 'clipboard', 'Geocoder', 'Map'];
+	HomeController.$inject = ['$scope', 'geohash', 'clipboard', 'toastr', 'Geocoder', 'Map'];
 
-	function HomeController($scope, geohash, clipboard, Geocoder, Map) {
+	function HomeController($scope, geohash, clipboard, toastr, Geocoder, Map) {
 
 		var map_marker = '/img/target.png';
 
@@ -171,6 +171,8 @@
 
 		$scope.copyToClipboard = function(value) {
 			clipboard.copyText(value);
+			toastr.clear();
+			toastr.success('Copied to clipboard!');
 		};
 
 		_init();

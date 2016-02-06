@@ -17,6 +17,8 @@
 						'vendor/angular-route/angular-route.js',
 						'vendor/angular-geohash/dist/angular-geohash.min.js',
 						'vendor/angular-clipboard/angular-clipboard.js',
+						'vendor/angular-toastr/dist/angular-toastr.min.js',
+						'vendor/angular-toastr/dist/angular-toastr.tpls.min.js',
 
 						'app/app.js',
 						'app/config.js',
@@ -58,6 +60,7 @@
 						'build/css/app.min.css': [
 							'css/bootstrap-paper.min.css',
 							'vendor/font-awesome/css/font-awesome.css',
+							'vendor/angular-toastr/dist/angular-toastr.min.css',
 							'css/app.css',
 						]
 					}
