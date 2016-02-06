@@ -10,7 +10,7 @@
 		<div class="input-group-addon">
 			<i class="fa fa-search text-muted"></i>
 		</div>
-		<input ng-model="queryPlace" ng-change="searchPlace(queryPlace);" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+		<input autofocus ng-model="queryPlace" ng-change="searchPlace(queryPlace);" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
 		   id="queryPlace" type="search" placeholder="Type to search a place" class="form-control input-sm">
 		<ul class="list-group place-search">
 			<li ng-repeat="place in places" ng-click="selectPlace(place);" class="list-group-item text-left">{{ place.formatted_address }}</li>
