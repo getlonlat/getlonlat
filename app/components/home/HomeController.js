@@ -21,7 +21,6 @@
 			$scope.longitude = 0;
 			$scope.startLonlat = { lon: 0, lat: 0 };
 
-			$scope.side = 'left';
 			$scope.baselayer  = 0;
 			$scope.separator  = 'comma';
 			$scope.projection = 'EPSG:4326';
@@ -46,8 +45,6 @@
 			Map.showPopup($scope.startLonlat, 'Drag me to update the values');
 
 			focus('queryPlace');
-
-			// angular.element($window).bind('resize', function() { Map.fixMapHeight(); });
 		}
 
 		function _apply() {
