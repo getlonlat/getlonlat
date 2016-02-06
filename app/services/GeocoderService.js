@@ -8,6 +8,8 @@
 		.module('app')
 		.service('Geocoder', GeocoderService);
 
+	GeocoderService.$inject = ['$http'];
+
 	function GeocoderService($http) {
 
 		this.searchPlace = function(query) {
