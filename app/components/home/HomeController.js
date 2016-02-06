@@ -8,7 +8,7 @@
 		.module('app')
 		.controller('HomeController', HomeController);
 
-	function HomeController($scope, $location, $window, focus, Geocoder, Map) {
+	function HomeController($scope, Geocoder, Map) {
 
 		var map_marker = '/img/target.png';
 
@@ -43,8 +43,6 @@
 
 			$scope.dropMarker();
 			Map.showPopup($scope.startLonlat, 'Drag me to update the values');
-
-			focus('queryPlace');
 		}
 
 		function _apply() {
@@ -97,10 +95,6 @@
 			_updateValues(point);
 		}
 
-		$scope.goto = function(to) {
-			$location.path(to);
-		};
-
 		$scope.dropMarker = function(lonlat) {
 			lonlat = lonlat || Map.getCenter();
 			_addMarker(lonlat);
@@ -112,7 +106,7 @@
 			Map.getPosition(function(point) {
 				_addMarker(point, { center: true, zoom: 14 });
 			}, function(errorMessage) {
-				window.alert(errorMessage);
+				alert(errorMessage);
 			}, function() {
 				// always execute after success and error
 				$scope.gettingPosition = false;
