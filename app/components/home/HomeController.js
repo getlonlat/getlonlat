@@ -45,6 +45,8 @@
 
 			$scope.dropMarker();
 			Map.showPopup($scope.startLonlat, 'Drag me to update the values');
+
+			$scope.getPosition();
 		}
 
 		function _apply() {
