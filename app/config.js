@@ -8,6 +8,8 @@
 		.module('app')
 		.config(AppConfig);
 
+	AppConfig.$inject = ['$provide'];
+
 	function AppConfig($provide) {
 
 		$provide.decorator("$exceptionHandler", function ($delegate) {
