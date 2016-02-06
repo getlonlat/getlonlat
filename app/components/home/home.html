@@ -27,7 +27,7 @@
 
 <fieldset>
 	<div class="row text-center">
-		<div class="col-md-2">
+		<div class="col-sm-6 col-md-2">
 			<div class="form-group">
 				<label for="latitude">
 					<b class="text-danger">Y</b>
@@ -36,14 +36,14 @@
 				<div class="input-group">
 					<input id="latitude" type="text" class="form-control text-center input-sm" value="{{ latitude }}">
 					<div class="input-group-btn">
-						<button ng-click="copyToClipboard(latitude)" type="button" class="btn btn-sm btn-link">
-							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						<button ng-click="copyToClipboard(latitude)" type="button" class="btn btn-sm btn-link" title="Copy to clipboard">
+							<i class="fa fa-clipboard fa-lg text-muted"></i>
 						</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-sm-6 col-md-2">
 			<div class="form-group">
 				<label for="longitude">
 					<b class="text-danger">X</b>
@@ -52,14 +52,14 @@
 				<div class="input-group">
 					<input id="longitude" type="text" class="form-control text-center input-sm" value="{{ longitude }}">
 					<div class="input-group-btn">
-						<button ng-click="copyToClipboard(longitude)" type="button" class="btn btn-sm btn-link">
-							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						<button ng-click="copyToClipboard(longitude)" type="button" class="btn btn-sm btn-link" title="Copy to clipboard">
+							<i class="fa fa-clipboard fa-lg text-muted"></i>
 						</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-5">
+		<div class="col-sm-6 col-md-5">
 			<div ng-show="showLatLon" class="form-group">
 				<label for="latlon">
 					<b class="text-danger">X Y</b>
@@ -71,8 +71,8 @@
 				<div class="input-group">
 					<input id="latlon" type="text" class="form-control text-center input-sm" value="{{ latlon }}">
 					<div class="input-group-btn">
-						<button ng-click="copyToClipboard(latlon)" type="button" class="btn btn-sm btn-link">
-							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						<button ng-click="copyToClipboard(latlon)" type="button" class="btn btn-sm btn-link" title="Copy to clipboard">
+							<i class="fa fa-clipboard fa-lg text-muted"></i>
 						</button>
 					</div>
 				</div>
@@ -89,21 +89,21 @@
 				<div class="input-group">
 					<input id="lonlat" type="text" class="form-control text-center input-sm" value="{{ lonlat }}">
 					<div class="input-group-btn">
-						<button ng-click="copyToClipboard(lonlat)" type="button" class="btn btn-sm btn-link">
-							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						<button ng-click="copyToClipboard(lonlat)" type="button" class="btn btn-sm btn-link" title="Copy to clipboard">
+							<i class="fa fa-clipboard fa-lg text-muted"></i>
 						</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3">
 			<div class="form-group">
 				<label for="geohash">GEOHASH</label>
 				<div class="input-group">
 					<input id="geohash" type="text" class="form-control text-center input-sm" value="{{ geohash }}">
 					<div class="input-group-btn">
-						<button ng-click="copyToClipboard(geohash)" type="button" class="btn btn-sm btn-link">
-							<i class="fa fa-clipboard fa-lg text-warning"></i>
+						<button ng-click="copyToClipboard(geohash)" type="button" class="btn btn-sm btn-link" title="Copy to clipboard">
+							<i class="fa fa-clipboard fa-lg text-muted"></i>
 						</button>
 					</div>
 				</div>
@@ -114,7 +114,7 @@
 
 <fieldset class="well well-sm">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-sm-8 col-md-4">
 			<br>
 			<div class="btn-group btn-group-justified">
 				<div class="btn-group">
@@ -132,7 +132,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1">
+		<div class="col-sm-2 col-md-1">
 			<div class="form-group" title="Map zoom">
 				<label for="zoom">ZOOM</label>
 				<select id="zoom" ng-model="zoom" ng-change="changeZoom(zoom);" class="form-control">
@@ -140,7 +140,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-md-1">
+		<div class="col-sm-2 col-md-1">
 			<div class="form-group" title="Geohash precision">
 				<label for="precision">PRECISION</label>
 				<select id="precision" ng-model="precision" ng-change="updateValues();" class="form-control">
@@ -148,7 +148,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-sm-4 col-md-2">
 			<div class="form-group" title="Map base layer">
 				<label for="baselayer">BASE LAYER</label>
 				<select id="baselayer" ng-model="baselayer" ng-change="changeBaselayer(baselayer);" class="form-control">
@@ -159,7 +159,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-sm-4 col-md-2">
 			<div class="form-group" title="Lat/Lon separator">
 				<label for="separator">SEPARATOR</label>
 				<select id="separator" ng-model="separator" ng-change="updateValues();" class="form-control">
@@ -168,7 +168,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-sm-4 col-md-2">
 			<div class="form-group" title="Output projection">
 				<label for="projection">OUTPUT EPSG</label>
 				<select id="projection" ng-model="projection" ng-change="updateValues();" class="form-control">
