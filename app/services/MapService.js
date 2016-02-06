@@ -128,10 +128,6 @@
 			self.setCenterMap();
 		};
 
-	  this.setBaseLayer = function(index) {
-	    self._map.setBaseLayer(self._map.layers[index]);
-	  };
-
 		this.getBaselayersList = function() {
 			var arr = [];
 			for (var key in self._baselayers) {
