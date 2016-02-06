@@ -14,9 +14,9 @@
 						'vendor/jquery/dist/jquery.js',
 						'vendor/bootstrap/dist/js/bootstrap.js',
 						'vendor/angular/angular.js',
-						'vendor/angular-touch/angular-touch.js',
 						'vendor/angular-route/angular-route.js',
 						'vendor/angular-geohash/dist/angular-geohash.min.js',
+						'vendor/angular-clipboard/angular-clipboard.js',
 
 						'app/app.js',
 						'app/config.js',

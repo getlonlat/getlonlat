@@ -36,7 +36,7 @@
 				<div class="input-group">
 					<input id="latitude" type="text" class="form-control text-center input-sm" value="{{ latitude }}">
 					<div class="input-group-btn">
-						<button type="button" class="btn btn-sm btn-link">
+						<button ng-click="copyToClipboard(latitude)" type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
 						</button>
 					</div>
@@ -52,7 +52,7 @@
 				<div class="input-group">
 					<input id="longitude" type="text" class="form-control text-center input-sm" value="{{ longitude }}">
 					<div class="input-group-btn">
-						<button type="button" class="btn btn-sm btn-link">
+						<button ng-click="copyToClipboard(longitude)" type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
 						</button>
 					</div>
@@ -71,7 +71,7 @@
 				<div class="input-group">
 					<input id="latlon" type="text" class="form-control text-center input-sm" value="{{ latlon }}">
 					<div class="input-group-btn">
-						<button type="button" class="btn btn-sm btn-link">
+						<button ng-click="copyToClipboard(latlon)" type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
 						</button>
 					</div>
@@ -89,7 +89,7 @@
 				<div class="input-group">
 					<input id="lonlat" type="text" class="form-control text-center input-sm" value="{{ lonlat }}">
 					<div class="input-group-btn">
-						<button type="button" class="btn btn-sm btn-link">
+						<button ng-click="copyToClipboard(lonlat)" type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
 						</button>
 					</div>
@@ -102,7 +102,7 @@
 				<div class="input-group">
 					<input id="geohash" type="text" class="form-control text-center input-sm" value="{{ geohash }}">
 					<div class="input-group-btn">
-						<button type="button" class="btn btn-sm btn-link">
+						<button ng-click="copyToClipboard(geohash)" type="button" class="btn btn-sm btn-link">
 							<i class="fa fa-clipboard fa-lg text-warning"></i>
 						</button>
 					</div>

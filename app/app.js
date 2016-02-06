@@ -6,6 +6,7 @@
 	 */
 	angular.module('app', [
 		'ngRoute',
-		'angular-geohash'
+		'angular-geohash',
+		'angular-clipboard'
 	]);
 })(window.angular);

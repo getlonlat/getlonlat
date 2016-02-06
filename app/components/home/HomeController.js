@@ -8,9 +8,9 @@
 		.module('app')
 		.controller('HomeController', HomeController);
 
-	HomeController.$inject = ['$scope', 'geohash', 'Geocoder', 'Map'];
+	HomeController.$inject = ['$scope', 'geohash', 'clipboard', 'Geocoder', 'Map'];
 
-	function HomeController($scope, geohash, Geocoder, Map) {
+	function HomeController($scope, geohash, clipboard, Geocoder, Map) {
 
 		var map_marker = '/img/target.png';
 
@@ -167,6 +167,10 @@
 
 		$scope.toggleLatLon = function() {
 			$scope.showLatLon = !$scope.showLatLon;
+		};
+
+		$scope.copyToClipboard = function(value) {
+			clipboard.copyText(value);
 		};
 
 		_init();

@@ -25,6 +25,10 @@
     "openlayers": "git://github.com/v5analytics/openlayers.git",
     "font-awesome": "~4.3.0",
     "angular-focus-it": "~1.*",
-    "angular-geohash": "^0.2.0"
+    "angular-geohash": "^0.2.0",
+    "angular-clipboard": "^1.3.0"
+  },
+  "resolutions": {
+    "angular": "1.3.20"
   }
 }
