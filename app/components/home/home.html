@@ -110,6 +110,18 @@
 			</div>
 		</div>
 	</div>
+
+	<div ng-show="whatishere !== ''" class="form-group">
+		<label for="whatishere">WHAT IS HERE</label>
+		<div class="input-group">
+			<input id="whatishere" type="text" class="form-control input-sm" value="{{ whatishere }}">
+			<div class="input-group-btn">
+				<button ng-click="copyToClipboard(whatishere)" type="button" class="btn btn-sm btn-link" title="Copy to clipboard">
+					<i class="fa fa-clipboard fa-lg text-muted"></i>
+				</button>
+			</div>
+		</div>
+	</div>
 </fieldset>
 
 <fieldset class="well well-sm">

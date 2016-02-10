@@ -72,6 +72,18 @@
 			point = Map.transform(point, 'EPSG:900913', $scope.defaultProjection);
 			$scope.geohash = geohash.encode(point.lat, point.lon, $scope.precision);
 
+			Geocoder.getPlaceInfo(point)
+				.success(function(response) {
+					if (response.status == "OK") {
+						$scope.whatishere = response.results[0].formatted_address;
+					} else {
+						$scope.whatishere = '';
+					}
+				})
+				.error(function() {
+					$scope.whatishere = '';
+				});
+
 			if($scope.projection !== $scope.defaultProjection) {
 				point = Map.transform(point, $scope.defaultProjection, $scope.projection);
 			}
