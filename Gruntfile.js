@@ -18,6 +18,7 @@
 
 						'app/app.js',
 						'app/config.js',
+						'app/constants.js',
 						'app/routes.js',
 						'app/components/home/HomeController.js',
 						'app/services/MapService.js',
