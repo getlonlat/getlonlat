@@ -22,7 +22,7 @@
 		};
 
 		this.getPlaceInfo = function(lonlat) {
-			return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+			return $http.get('https://maps.googleapis.com/maps/api/geocode/json', {
 				params: {
 					latlng: lonlat.lat + ',' + lonlat.lon,
 					sensor: false
